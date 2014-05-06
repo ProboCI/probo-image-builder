@@ -1,0 +1,4 @@
+forge "https://forge.puppetlabs.com"
+
+mod "nrvale0/packer"
+mod "puppetlabs/nodejs"
