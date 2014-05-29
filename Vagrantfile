@@ -8,7 +8,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.box_url = "http://domain.com/path/to/above.box"
   config.vm.network "private_network", type: "dhcp"
   config.vm.network :private_network, ip: "192.168.33.254"
-  config.vm.synced_folder "./testshared", "/home/vagrant/testshared", type: "rsync"
 
   # Install puppet.
   config.vm.provision "shell", inline: "echo '' > /etc/puppet/hiera.yaml ; sudo apt-get install puppet -y"
