@@ -1,0 +1,21 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "ubuntu:14.04",
+      "pull": false,
+      "export_path": "ubuntu-14.04_lamp.tar"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "install_puppet.sh"
+    },
+    {
+      "type": "puppet-masterless",
+      "manifest_file": "../puppet/manifests/lamp.pp",
+      "module_paths": [ "../puppet/modules" ]
+    }
+  ]
+}
