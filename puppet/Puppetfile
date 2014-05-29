@@ -1,4 +1,15 @@
 forge "https://forge.puppetlabs.com"
 
+mod "garethr/docker"
 mod "nrvale0/packer"
 mod "puppetlabs/nodejs"
+
+mod 'puppetlabs/mysql'
+mod 'erikwebb/drush'
+mod 'fsalum/redis'
+mod 'saz/memcached'
+mod 'acme/ohmyzsh'
+mod 'puppetlabs/apache'
+mod 'attachmentgenie/ssh'
+
+mod 'nodes/php', "0.8.3"
