@@ -120,7 +120,8 @@ package { 'wget':
   ensure => 'installed',
 }->
 
-include php::composer
+class { 'php::composer': }
+
 include php::phpunit
 
 # include drush
