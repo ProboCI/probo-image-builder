@@ -32,6 +32,11 @@ Php::Extension <| |> -> Php::Config <| |> ~> Service["apache2"]
 
 include php
 
+# We need to set the root password so that the user can be loaded.
+user { 'root':
+  password => sha1('root'),
+}
+
 # TODO: Add support for yum.
 class { 'php::cli':
   ensure   => 'present',
@@ -82,9 +87,6 @@ package { 'zip':
 
 # TODO: Fork this module and make the start/provider of SSH configurable.
 # include ssh
-package { 'openssh-server':
-  ensure => 'installed',
-}
 
 
 class { 'mysql::server':
@@ -102,9 +104,17 @@ class { 'mysql::bindings':
   php_enable => true,
 }
 
+class { "ssh::server":
+  permit_root_login => 'yes',
+  manage_service => false,
+}~>
 
+file { '/var/run/sshd':
+  ensure => 'directory',
+  owner  => 'root',
+  group  => 'root',
 
-include php::composer
+}
 
 include php::phpunit
 # include drush
