@@ -3,3 +3,4 @@ puppet/modules
 *.swp
 .librarian
 .tmp
+builder/ubuntu-14.04_lamp.tar
