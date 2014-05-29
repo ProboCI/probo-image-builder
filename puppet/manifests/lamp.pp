@@ -116,6 +116,12 @@ file { '/var/run/sshd':
 
 }
 
+package { 'wget':
+  ensure => 'installed',
+}->
+
+include php::composer
 include php::phpunit
+
 # include drush
 
