@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "192.168.33.254"
 
   # Install puppet.
-  config.vm.provision "shell", inline: "echo '' > /etc/puppet/hiera.yaml ; sudo apt-get install puppet -y"
+  config.vm.provision "shell", path: "scripts/puppet_setup.sh"
 
   # Run puppet
   config.vm.provision "puppet" do |puppet|
