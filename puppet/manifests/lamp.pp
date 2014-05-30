@@ -124,5 +124,8 @@ class { 'php::composer': }
 
 include php::phpunit
 
+class { 'solr':
+  manage_service => false,
+}
 # include drush
 
