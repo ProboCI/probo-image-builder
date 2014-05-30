@@ -10,6 +10,13 @@ mod 'fsalum/redis'
 mod 'saz/memcached'
 mod 'acme/ohmyzsh'
 mod 'puppetlabs/apache'
-mod 'attachmentgenie/ssh'
 
+# Any version more recent than this one conflicts with puppetlabs/apache.
 mod 'nodes/php', "0.8.3"
+
+# For now we need to install from git, soon we
+mod 'zivtech/solr',
+  :git => 'https://github.com/zivtech/puppet-drupal-solr.git'
+
+mod 'zivtech/ssh',
+  :git => "https://github.com/zivtech/puppet-module-ssh.git"

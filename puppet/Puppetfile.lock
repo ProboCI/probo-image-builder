@@ -1,11 +1,14 @@
 FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    puppetlabs/vcsrepo (0.2.0)
+
+FORGE
   remote: https://forge.puppetlabs.com
   specs:
     AlexCline/dirtree (0.2.1)
     acme/ohmyzsh (0.1.2)
       puppetlabs/stdlib (>= 0.0.0)
-    attachmentgenie/ssh (1.2.2)
-      puppetlabs/stdlib (>= 2.2.1)
     erikwebb/drush (0.0.2)
       rafaelfc/pear (>= 0.0.0)
     fsalum/redis (0.0.12)
@@ -14,6 +17,11 @@ FORGE
       puppetlabs/apt (>= 1.1.0)
       puppetlabs/stdlib (>= 4.1.0)
       stahnma/epel (>= 0.0.6)
+    leonardothibes/phpmyadmin (1.0.5)
+      leonardothibes/wget (>= 1.0.0)
+      puppetlabs/apache (>= 0.10.0)
+      puppetlabs/mysql (>= 2.1.0)
+    leonardothibes/wget (1.0.4)
     nanliu/staging (0.4.0)
     nodes/php (0.8.3)
       puppetlabs/apt (> 0.0.0)
@@ -43,16 +51,34 @@ FORGE
     stahnma/epel (0.0.6)
     thias/sysctl (0.3.0)
 
+GIT
+  remote: https://github.com/zivtech/puppet-drupal-solr.git
+  ref: master
+  sha: 18e3b8b43252bf7240159f7af55b3b388dd276f6
+  specs:
+    zivtech/solr (0.0.1)
+      puppetlabs/vcsrepo (>= 0.1.0)
+
+GIT
+  remote: https://github.com/zivtech/puppet-module-ssh.git
+  ref: master
+  sha: 78a32cb66775c059baec5de8accf38d2d1eb69e9
+  specs:
+    zivtech/ssh (1.3.0)
+      puppetlabs/stdlib (>= 2.2.1)
+
 DEPENDENCIES
   acme/ohmyzsh (>= 0)
-  attachmentgenie/ssh (>= 0)
   erikwebb/drush (>= 0)
   fsalum/redis (>= 0)
   garethr/docker (>= 0)
+  leonardothibes/phpmyadmin (>= 0)
   nodes/php (= 0.8.3)
   nrvale0/packer (>= 0)
   puppetlabs/apache (>= 0)
   puppetlabs/mysql (>= 0)
   puppetlabs/nodejs (>= 0)
   saz/memcached (>= 0)
+  zivtech/solr (>= 0)
+  zivtech/ssh (>= 0)
 
