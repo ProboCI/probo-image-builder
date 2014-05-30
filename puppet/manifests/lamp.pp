@@ -107,6 +107,7 @@ class { "ssh::server":
   manage_service          => false,
   password_authentication => 'yes',
   use_pam                 => 'no',
+  use_dns                 => 'no',
 }~>
 
 file { '/var/run/sshd':
