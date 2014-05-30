@@ -34,7 +34,9 @@ include php
 
 # We need to set the root password so that the user can be loaded.
 user { 'root':
-  password => sha1('root'),
+  # Set the password to 'root'. The below line doesn't work for some reason.
+  # password => sha1('root'),
+  password => '$6$Q6Rg6ZS3$i4ibqDLRQQvJHq0OSOWhDGjSGmBdXaTLhDWkWxKgRfcX8Ll5BSFIME67Q4HL/75LwJHcZoCDfFA8LuGlpjyQK0',
 }
 
 # TODO: Add support for yum.
@@ -85,10 +87,6 @@ package { 'zip':
   provider => 'pecl',
 }
 
-# TODO: Fork this module and make the start/provider of SSH configurable.
-# include ssh
-
-
 class { 'mysql::server':
   root_password   => 'strongpassword',
   service_enabled  => true,
@@ -105,8 +103,10 @@ class { 'mysql::bindings':
 }
 
 class { "ssh::server":
-  permit_root_login => 'yes',
-  manage_service => false,
+  permit_root_login       => 'yes',
+  manage_service          => false,
+  password_authentication => 'yes',
+  use_pam                 => 'no',
 }~>
 
 file { '/var/run/sshd':
