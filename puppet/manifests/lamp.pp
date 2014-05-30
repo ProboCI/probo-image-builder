@@ -130,3 +130,11 @@ class { 'solr':
 }
 # include drush
 
+class { 'nodejs':
+  manage_repo => true,
+}~>
+
+file { '/usr/bin/node':
+  ensure => 'link',
+  target => '/usr/bin/nodejs',
+}
