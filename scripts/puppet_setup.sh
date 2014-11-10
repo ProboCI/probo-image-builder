@@ -1,4 +1,4 @@
-#! /bin/env bash
+#! /usr/bin/env bash
 # Fix an Ubuntu bug that warns anytime stdin is not a tty.
 sed -i 's/^mesg n$/tty -s \&\& mesg n/g' /root/.profile
 # Don't use the us mirrors, they sometimes cause trouble.
