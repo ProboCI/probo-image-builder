@@ -1,3 +1,8 @@
+package { 'git':
+  ensure => 'installed',
+}
+
+include creature_comforts
 
 class { 'redis':
 }
@@ -11,6 +16,8 @@ class { 'apache':
   mpm_module     => 'prefork',
   servername     => 'dev.local',
   service_enable => false,
+  # Do not purge configs because it will remove any vhosts we put in palce.
+  purge_configs => false,
 }
 
 
@@ -55,32 +62,32 @@ class { 'php::dev':
   provider => 'apt',
 }
 
+package { 'curl':
+  ensure => 'present',
+}
+
 class { 'php::pear':
   ensure   => 'present',
   provider => 'apt',
-}
+}->
 
   # We don't want APC on any version of PHP greater than 5.3.
   # class { 'php::extension::apc':
   #   ensure   => 'present',
   #   provider => 'apt',
   #   package  => 'php-apc',
-  # }
+  # }->
 
 
 class { 'php::extension::curl':
   ensure   => 'present',
   provider => 'apt',
-}
-
-package { 'curl':
-  ensure => 'present',
-}
+}->
 
 package { 'uploadprogress':
   ensure   => 'installed',
   provider => 'pecl',
-}
+}->
 
 package { 'zip':
   ensure   => 'installed',
@@ -95,8 +102,6 @@ class { 'mysql::server':
   service_provider => 'init',
   restart          => false,
 }
-
-
 
 class { 'mysql::bindings':
   php_enable => true,
@@ -127,6 +132,7 @@ include php::phpunit
 
 class { 'solr':
   manage_service => false,
+  require        => Package['git'],
 }
 # include drush
 
@@ -141,6 +147,23 @@ file { '/usr/bin/node':
 
 package { 'lepew-penelope':
   ensure   => 'installed',
-  provider => 'npm'
+  provider => 'npm',
 }
 
+package { 'Console_Table':
+  ensure   => installed,
+  provider => pear,
+}->
+
+vcsrepo { '/usr/lib/drush':
+  provider => 'git',
+  source   => 'https://github.com/drush-ops/drush.git',
+  revision => '6.4.0',
+  require        => Package['git'],
+}->
+
+file { '/usr/local/bin/drush':
+  ensure => 'link',
+  target => '/usr/lib/drush/drush',
+  mode   => 755,
+}

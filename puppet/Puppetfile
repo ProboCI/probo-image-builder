@@ -10,6 +10,7 @@ mod 'fsalum/redis'
 mod 'saz/memcached'
 mod 'acme/ohmyzsh'
 mod 'puppetlabs/apache'
+mod 'leonardothibes/phpmyadmin'
 
 # Any version more recent than this one conflicts with puppetlabs/apache.
 mod 'nodes/php', "0.8.3"

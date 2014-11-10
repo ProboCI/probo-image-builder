@@ -5,7 +5,7 @@ class { 'docker':
 
 class { 'packer':
   install_dir => '/opt/packer',
-  version => '0.6.0',
+  version => '0.7.1',
 }->
 
 file { '/usr/bin/packer':
@@ -30,3 +30,9 @@ package { 'lepew-penelope':
   ensure   => 'installed',
   provider => 'npm'
 }
+
+package { 'git':
+  ensure => 'installed',
+}->
+
+class { creature_comforts: }
