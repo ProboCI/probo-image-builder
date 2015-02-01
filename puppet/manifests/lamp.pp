@@ -20,9 +20,7 @@ class { 'apache':
   purge_configs => false,
 }
 
-
 # TODO: Match this up with acquia's web heads https://gist.github.com/beejeebus/34c4e8fb4f76dd9ec47e
-
 class { 'apache::mod::mime': }->
 
 class { 'apache::mod::rewrite': }->
@@ -66,28 +64,49 @@ package { 'curl':
   ensure => 'present',
 }
 
-class { 'php::pear':
-  ensure   => 'present',
-  provider => 'apt',
-}->
-
-  # We don't want APC on any version of PHP greater than 5.3.
-  # class { 'php::extension::apc':
-  #   ensure   => 'present',
-  #   provider => 'apt',
-  #   package  => 'php-apc',
-  # }->
-
-
 class { 'php::extension::curl':
-  ensure   => 'present',
-  provider => 'apt',
+  require => Class['php::dev'],
+}
+
+class { 'php::pear':
+  require => Class['php::dev'],
 }->
+
+
+php::config { 'php-extension-redis':
+  file => "${php::params::config_root_ini}/redis.ini",
+  config => [],
+}
+
+file { '/etc/php5/apache2/redis.ini':
+
+}
 
 package { 'uploadprogress':
   ensure   => 'installed',
   provider => 'pecl',
 }->
+
+class { 'php::extension::opcache':
+  require => Class['php::dev'],
+  # settings => [
+  #   'set ".anon/opcache.max_accelerated_files" "12000"',
+  #   'set ".anon/opcache.memory_consumption" "256"',
+  #   'set ".anon/opcache.validate_timestamps" "0"',
+  # ],
+}~>
+file { '/etc/php5/apache2/conf.d/opcache2.ini':
+  ensure  => file,
+  content => "opcache.max_accelerated_files = 12000\nopcache.memory_consumption = 256\nopcache.validate_timestamps = 0",
+  owner   => 'root',
+  group   => 'root',
+}
+
+
+
+class { 'php::extension::gd':
+  require => Class['php::dev'],
+}
 
 package { 'zip':
   ensure   => 'installed',
@@ -130,11 +149,9 @@ class { 'php::composer': }
 
 include php::phpunit
 
-class { 'solr':
-  manage_service => false,
-  require        => Package['git'],
+class { 'drush_fetcher':
+  fetcher_host => 'https://extranet.zivtech.com'
 }
-# include drush
 
 class { 'nodejs':
   manage_repo => true,
