@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "docker",
-      "image": "ubuntu:latest",
+      "image": "ubuntu:14.04",
       "pull": false,
       "commit": true
     }
