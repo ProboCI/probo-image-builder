@@ -1,23 +1,31 @@
-forge "https://forge.puppetlabs.com"
+#!/usr/bin/env ruby
+#^syntax detection
+forge 'https://forgeapi.puppetlabs.com'
 
-mod "garethr/docker"
-mod "nrvale0/packer"
-mod "puppetlabs/nodejs"
+mod 'puppetlabs-git'
 
-mod 'puppetlabs/mysql'
-mod 'erikwebb/drush'
-mod 'fsalum/redis'
-mod 'saz/memcached'
-mod 'acme/ohmyzsh'
-mod 'puppetlabs/apache'
-mod 'leonardothibes/phpmyadmin'
+mod 'garethr-docker'
+mod 'nrvale0-packer'
+mod 'puppetlabs-nodejs'
 
-# Any version more recent than this one conflicts with puppetlabs/apache.
-mod 'nodes/php', "0.8.3"
+mod 'puppetlabs-mysql'
+mod 'puppetlabs-apache'
+
+mod 'maestrodev-wget'
+
+mod 'leonardothibes-phpmyadmin'
+mod 'saz-memcached'
+
+mod 'puppetlabs-java'
+mod 'jhoblitt-selenium'
+
+mod 'zivtech-drush'
+mod 'zivtech-drush_fetcher'
+mod 'zivtech-drupal_php'
 
 # For now we need to install from git, soon we
-mod 'zivtech/solr',
+mod 'zivtech-solr',
   :git => 'https://github.com/zivtech/puppet-drupal-solr.git'
 
-mod 'zivtech/ssh',
-  :git => "https://github.com/zivtech/puppet-module-ssh.git"
+mod 'puppet-packer',
+  :git => 'https://github.com/zivtech/puppet-packer.git'
