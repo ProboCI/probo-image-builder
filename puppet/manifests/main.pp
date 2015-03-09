@@ -5,7 +5,7 @@ class { 'docker':
 
 class { 'packer':
   install_dir => '/opt/packer',
-  version => '0.7.1',
+  version     => '0.7.5',
 }->
 
 file { '/usr/bin/packer':
