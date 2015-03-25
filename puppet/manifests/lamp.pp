@@ -14,6 +14,21 @@ class { drupal_php:
 
 include drush_fetcher
 
+file { '/root/.ssh':
+  ensure => 'directory',
+  mode   => '0700',
+  owner => 'root',
+  group => 'root',
+}->
+
+# There is probably a better way, but I can't seed all remotes keys...
+file { '/root/.ssh/config':
+  content => "Host *\n  StrictHostKeyChecking no",
+  mode    => '0700',
+  owner => 'root',
+  group => 'root',
+}
+
 drush::config { 'fetcher-class':
   file  => 'fetcher-services',
   key   => "fetcher']['info_fetcher.class",
@@ -24,6 +39,25 @@ drush::config { 'fetcher-services-host':
   file  => 'fetcher-services',
   key   => "fetcher']['info_fetcher.config']['host",
   value => 'https://extranet.zivtech.com',
+}
+
+# Inside penelope the regular `services` command cannot do its thing.
+drush::config { 'fetcher-apache-restart':
+  file  => 'fetcher-services',
+  key   => "fetcher']['server.restart_command",
+  value => 'apache2ctl graceful',
+}
+
+drush::config { 'fetcher-enable-site':
+  file  => 'fetcher-services',
+  key   => "fetcher']['server.enable_site_command",
+  value => 'true',
+}
+
+drush::config { 'fetcher-disable-site':
+  file  => 'fetcher-services',
+  key   => "fetcher']['server.disable_site_command",
+  value => 'true',
 }
 
 drush::config { 'fetcher-services-server-port':
