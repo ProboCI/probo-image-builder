@@ -10,7 +10,13 @@ class { drupal_php:
   server_manage_service => true,
   server_service_enable => false,
   server_service_ensure => 'stopped',
-}
+  server_default_vhost  => false,
+}->
+
+# Necessary on Apache 2015
+apache::mod { 'access_compat': }->
+# This should be performed by nodes-php's `php::apache` via  zvitech-drupal_php, not sure what gives.
+apache::mod { 'php5': }
 
 include drush_fetcher
 
@@ -21,7 +27,7 @@ file { '/root/.ssh':
   group => 'root',
 }->
 
-# There is probably a better way, but I can't seed all remotes keys...
+# TODO: There's got to be a better way...
 file { '/root/.ssh/config':
   content => "Host *\n  StrictHostKeyChecking no",
   mode    => '0700',
@@ -46,18 +52,6 @@ drush::config { 'fetcher-apache-restart':
   file  => 'fetcher-services',
   key   => "fetcher']['server.restart_command",
   value => 'apache2ctl graceful',
-}
-
-drush::config { 'fetcher-enable-site':
-  file  => 'fetcher-services',
-  key   => "fetcher']['server.enable_site_command",
-  value => 'true',
-}
-
-drush::config { 'fetcher-disable-site':
-  file  => 'fetcher-services',
-  key   => "fetcher']['server.disable_site_command",
-  value => 'true',
 }
 
 drush::config { 'fetcher-services-server-port':

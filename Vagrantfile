@@ -9,6 +9,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "private_network", type: "dhcp"
   config.vm.network :private_network, ip: "192.168.33.254"
 
+  config.vm.provider :virtualbox do |vb|
+    # Use VBoxManage to customize the VM. For example to change memory:
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  end
+
   # Install puppet.
   config.vm.provision "shell", path: "scripts/puppet_setup.sh"
 

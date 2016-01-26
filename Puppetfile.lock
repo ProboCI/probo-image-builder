@@ -1,0 +1,75 @@
+FORGE
+  remote: https://forgeapi.puppetlabs.com
+  specs:
+    AlexCline-dirtree (0.2.1)
+    acme-ohmyzsh (0.1.2)
+      puppetlabs-stdlib (>= 0)
+    erikwebb-drush (0.0.2)
+      rafaelfc-pear (>= 0)
+    fsalum-redis (1.0.3)
+      thias-sysctl (>= 0.3.0)
+    garethr-docker (3.3.1)
+      puppetlabs-apt (>= 1.1.0)
+      puppetlabs-stdlib (>= 4.1.0)
+      stahnma-epel (>= 0.0.6)
+    nanliu-staging (1.0.3)
+    nodes-php (0.8.3)
+      puppetlabs-apt (> 0.0.0)
+      puppetlabs-stdlib (> 0.0.0)
+    nrvale0-packer (0.1.4)
+      AlexCline-dirtree (>= 0.2.1)
+      nanliu-staging (>= 0.4.0)
+      puppetlabs-stdlib (>= 3.2.0)
+    puppetlabs-apache (1.2.0)
+      puppetlabs-concat (>= 1.1.1)
+      puppetlabs-stdlib (>= 2.4.0)
+    puppetlabs-apt (1.7.0)
+      puppetlabs-stdlib (>= 2.2.1)
+    puppetlabs-concat (1.1.2)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
+    puppetlabs-firewall (1.4.0)
+    puppetlabs-mysql (3.1.0)
+      nanliu-staging (~> 1.0)
+      puppetlabs-stdlib (>= 3.2.0)
+    puppetlabs-nodejs (0.7.1)
+      puppetlabs-apt (>= 0.0.3)
+      puppetlabs-stdlib (>= 2.0.0)
+    puppetlabs-stdlib (4.5.1)
+    puppetlabs-vcsrepo (1.2.0)
+    rafaelfc-pear (1.0.3)
+    saz-memcached (2.6.0)
+      puppetlabs-firewall (>= 0.1.0)
+      puppetlabs-stdlib (>= 3.2.0)
+    stahnma-epel (1.0.2)
+    thias-sysctl (1.0.2)
+
+GIT
+  remote: https://github.com/zivtech/puppet-drupal-solr.git
+  ref: master
+  sha: 18e3b8b43252bf7240159f7af55b3b388dd276f6
+  specs:
+    zivtech-solr (0.0.1)
+      puppetlabs-vcsrepo (>= 0.1.0)
+
+GIT
+  remote: https://github.com/zivtech/puppet-module-ssh.git
+  ref: master
+  sha: 78a32cb66775c059baec5de8accf38d2d1eb69e9
+  specs:
+    zivtech-ssh (1.0.0)
+      puppetlabs-stdlib (>= 2.2.1)
+
+DEPENDENCIES
+  acme-ohmyzsh (>= 0)
+  erikwebb-drush (>= 0)
+  fsalum-redis (>= 0)
+  garethr-docker (>= 0)
+  nodes-php (= 0.8.3)
+  nrvale0-packer (>= 0)
+  puppetlabs-apache (>= 0)
+  puppetlabs-mysql (>= 0)
+  puppetlabs-nodejs (>= 0)
+  saz-memcached (>= 0)
+  zivtech-solr (>= 0)
+  zivtech-ssh (>= 0)
+
