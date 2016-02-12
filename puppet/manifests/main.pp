@@ -4,8 +4,8 @@ class { 'docker':
 }
 
 class { 'packer':
-  install_dir => '/opt/packer',
-  version     => '0.7.5',
+  bin_dir => '/opt/packer',
+  version => '0.8.6',
 }->
 
 file { '/usr/bin/packer':
@@ -18,12 +18,13 @@ package { 'zip':
 }->
 
 class { 'nodejs':
-  manage_repo => true,
+  version => 'v4.3.0',
+  make_install => false,
 }->
 
 file { '/usr/bin/node':
   ensure => 'link',
-  target => '/usr/bin/nodejs',
+  target => '/usr/local/node/node-default/bin/node',
 }->
 
 package { 'lepew-penelope':
@@ -33,6 +34,4 @@ package { 'lepew-penelope':
 
 package { 'git':
   ensure => 'installed',
-}->
-
-class { creature_comforts: }
+}
