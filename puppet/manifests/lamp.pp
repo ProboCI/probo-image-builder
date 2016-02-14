@@ -4,6 +4,7 @@ package { 'wget':
   ensure => 'installed',
 }->
 
+# Needed so that the build won't fail.
 file { '/var/www':
   ensure => 'directory',
   mode   => '0755',
@@ -19,7 +20,11 @@ class { drupal_php:
 }->
 
 # Necessary on Apache 2015
-apache::mod { 'access_compat': }
+apache::mod { 'access_compat': }->
+
+file { '/var/www/html':
+  ensure => 'absent',
+}
 
 file { '/root/.ssh':
   ensure => 'directory',
