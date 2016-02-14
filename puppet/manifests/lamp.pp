@@ -19,6 +19,10 @@ class { drupal_php:
   opcache               => 'none',
 }->
 
+package { 'imagemagick':
+  ensure => 'present',
+}->
+
 # Necessary on Apache 2015
 apache::mod { 'access_compat': }->
 
