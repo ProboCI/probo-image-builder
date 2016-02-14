@@ -60,23 +60,6 @@ user { 'root':
   password => '$6$Q6Rg6ZS3$i4ibqDLRQQvJHq0OSOWhDGjSGmBdXaTLhDWkWxKgRfcX8Ll5BSFIME67Q4HL/75LwJHcZoCDfFA8LuGlpjyQK0',
 }
 
-# TODO: opcache tuning.
-# class { 'php::extension::opcache':
-#   require => Class['php::dev'],
-#   # settings => [
-#   #   'set ".anon/opcache.max_accelerated_files" "12000"',
-#   #   'set ".anon/opcache.memory_consumption" "256"',
-#   #   'set ".anon/opcache.validate_timestamps" "0"',
-#   # ],
-# }~>
-# file { '/etc/php5/apache2/conf.d/opcache2.ini':
-#   ensure  => file,
-#   content => "opcache.max_accelerated_files = 12000\nopcache.memory_consumption = 256\nopcache.validate_timestamps = 0",
-#   owner   => 'root',
-#   group   => 'root',
-# }
-
-
 package { 'zip':
   ensure   => 'installed',
   provider => 'pecl',
