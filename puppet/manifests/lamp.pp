@@ -92,3 +92,18 @@ package { 'lepew-penelope':
   ensure   => 'installed',
   provider => 'npm',
 }
+
+class { 'drush':
+  git_ref => '8.0.3',
+}
+
+drush::config { 'root':
+  key   => 'root',
+  value => '/var/www/html',
+}
+
+drush::config { 'disable-prompts':
+  key    => 'yes',
+  value  => 'TRUE',
+  string => false,
+}
