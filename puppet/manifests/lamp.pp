@@ -124,3 +124,17 @@ file { '/usr/local/bin/wp':
   source      => '/tmp/wp-cli.phar',
   mode        => '755',
 }
+
+# Install Ruby and compass
+package { 'ruby-dev':
+  ensure   => 'present'
+}->
+
+package { 'ruby-compass':
+  ensure   => 'present'
+}->
+
+exec { 'gem install bundler':
+  path    => ['/usr/bin/'],
+  creates => '/usr/local/bin/bundler',
+}
