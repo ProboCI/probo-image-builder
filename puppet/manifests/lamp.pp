@@ -23,6 +23,10 @@ package { 'imagemagick':
   ensure => 'present',
 }->
 
+package { 'php5-mcrypt':
+  ensure => 'present',
+}->
+
 # Necessary on Apache 2015
 apache::mod { 'access_compat': }->
 
