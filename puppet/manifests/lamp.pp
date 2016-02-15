@@ -111,3 +111,16 @@ drush::config { 'disable-prompts':
   value  => 'TRUE',
   string => false,
 }
+
+# Add WordPress CLI
+wget::fetch { 'WordPress CLI':
+  source      => 'https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar',
+  destination => '/tmp/wp-cli.phar',
+  require     => Package['wget'],
+}->
+
+file { '/usr/local/bin/wp':
+  ensure      => 'file',
+  source      => '/tmp/wp-cli.phar',
+  mode        => '755',
+}
