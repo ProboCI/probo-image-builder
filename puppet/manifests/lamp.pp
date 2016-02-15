@@ -138,3 +138,16 @@ exec { 'gem install bundler':
   path    => ['/usr/bin/'],
   creates => '/usr/local/bin/bundler',
 }
+
+# Install Drupal Console
+wget::fetch { 'Drupal Console':
+  source      => 'https://drupalconsole.com/installer',
+  destination => '/tmp/drupal.phar',
+  require     => Package['wget'],
+}->
+
+file { '/usr/local/bin/drupal':
+  ensure      => 'file',
+  source      => '/tmp/drupal.phar',
+  mode        => '755',
+}
