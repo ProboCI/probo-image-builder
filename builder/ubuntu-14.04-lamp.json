@@ -21,5 +21,14 @@
         "../puppet/custom-modules"
       ]
     }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "tag": "intermediary",
+        "repository": "proboci/ubuntu-14.04-lamp"
+      }
+    ]
   ]
 }
