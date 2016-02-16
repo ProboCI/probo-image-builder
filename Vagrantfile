@@ -29,6 +29,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.manifests_path = "puppet/manifests"
   end
 
+  config.vm.provision "shell", path: "scripts/create_image.sh"
+
   # config.vm.define :external do |external|
   #     external.vm.provision "puppet" do |puppet|
   #       puppet.module_path = "puppet/modules"
