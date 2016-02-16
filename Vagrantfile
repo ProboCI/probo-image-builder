@@ -20,11 +20,36 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Run puppet
   config.librarian_puppet.puppetfile_dir = "puppet"
   config.vm.provision "puppet" do |puppet|
-    puppet.module_path = "puppet/modules"
-    puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file = "main.pp"
     puppet.options = ["--debug", "--trace"]
+    puppet.module_path = [
+      "puppet/modules",
+      "puppet/custom-modules"
+    ]
+    puppet.manifests_path = "puppet/manifests"
   end
+
+  # config.vm.define :external do |external|
+  #     external.vm.provision "puppet" do |puppet|
+  #       puppet.module_path = "puppet/modules"
+  #       puppet.manifests_path = "puppet/manifests"
+  #       puppet.manifest_file = "main.pp"
+  #       puppet.options = ["--debug", "--trace"]
+  #     end
+  # end
+  #
+  # config.vm.define :internal do |internal|
+  #     internal.vm.provision "puppet" do |puppet|
+  #       puppet.module_path = [
+  #         "puppet/modules",
+  #         "puppet/custom-modules"
+  #       ]
+  #       puppet.manifests_path = "puppet/manifests"
+  #       puppet.manifest_file = "lamp.pp"
+  #       puppet.options = ["--debug", "--trace"]
+  #       puppet.hiera_config_path = "puppet/hiera.yaml"
+  #     end
+  # end
 
   config.ssh.forward_agent = true
 end
