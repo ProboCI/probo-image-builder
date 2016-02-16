@@ -14,8 +14,12 @@
     },
     {
       "type": "puppet-masterless",
+      "hiera_config_path": "../puppet/hiera.yaml",
       "manifest_file": "../puppet/manifests/lamp.pp",
-      "module_paths": [ "../puppet/modules" ]
+      "module_paths": [
+        "../puppet/modules",
+        "../puppet/custom-modules"
+      ]
     }
   ]
 }

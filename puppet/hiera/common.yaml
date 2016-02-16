@@ -1,0 +1,8 @@
+---
+drupal_php::opcache: 'none'
+drupal_php::server::apache::server_default_vhost: false
+drupal_php::server::apache::vhost::manage_docroot: false
+
+
+apache::default_vhost: false
+apache::default_confd_files: false
