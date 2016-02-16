@@ -70,7 +70,7 @@ package { 'zip':
 }
 
 class { 'mysql::server':
-  root_password   => 'strongpassword',
+  root_password    => 'strongpassword',
   service_enabled  => true,
   service_manage   => true,
   # Upstart is not supported inside a docker container.
@@ -120,18 +120,18 @@ wget::fetch { 'WordPress CLI':
 }->
 
 file { '/usr/local/bin/wp':
-  ensure      => 'file',
-  source      => '/tmp/wp-cli.phar',
-  mode        => '755',
+  ensure => 'file',
+  source => '/tmp/wp-cli.phar',
+  mode   => '755',
 }
 
 # Install Ruby and compass
 package { 'ruby-dev':
-  ensure   => 'present'
+  ensure => 'present'
 }->
 
 package { 'ruby-compass':
-  ensure   => 'present'
+  ensure => 'present'
 }->
 
 exec { 'gem install bundler':
@@ -147,7 +147,7 @@ wget::fetch { 'Drupal Console':
 }->
 
 file { '/usr/local/bin/drupal':
-  ensure      => 'file',
-  source      => '/tmp/drupal.phar',
-  mode        => '755',
+  ensure => 'file',
+  source => '/tmp/drupal.phar',
+  mode   => '755',
 }
