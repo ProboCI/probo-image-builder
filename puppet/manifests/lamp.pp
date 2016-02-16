@@ -32,7 +32,18 @@ apache::mod { 'access_compat': }->
 
 file { '/var/www/html':
   ensure => 'absent',
+  path => '/var/www/html',
+  recurse => true,
+  purge => true,
+  force => true,
+}->
+
+file { '/etc/apache2/conf.d/ssl_environment_variable.conf':
+  ensure  => 'present',
+  content => 'SetEnvIf X-Forwarded-Proto https HTTPS=on'
 }
+
+class {'vhost_settings': }
 
 file { '/root/.ssh':
   ensure => 'directory',
