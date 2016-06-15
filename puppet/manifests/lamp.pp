@@ -1,24 +1,49 @@
 include git
-include creature_comforts
-#include wget
 
 package { 'wget':
   ensure => 'installed',
+}->
+
+# Needed so that the build won't fail.
+file { '/var/www':
+  ensure => 'directory',
+  mode   => '0755',
+  owner  => 'root',
+  group  => 'root',
 }->
 
 class { drupal_php:
   server_manage_service => true,
   server_service_enable => false,
   server_service_ensure => 'stopped',
-  server_default_vhost  => false,
+  opcache               => 'none',
+}->
+
+package { 'imagemagick':
+  ensure => 'present',
+}->
+
+package { 'php5-mcrypt':
+  ensure => 'present',
 }->
 
 # Necessary on Apache 2015
 apache::mod { 'access_compat': }->
-# This should be performed by nodes-php's `php::apache` via  zvitech-drupal_php, not sure what gives.
-apache::mod { 'php5': }
 
-include drush_fetcher
+file { '/var/www/html':
+  ensure => 'absent',
+  path => '/var/www/html',
+  recurse => true,
+  purge => true,
+  force => true,
+}->
+
+file { '/etc/apache2/conf.d/ssl_environment_variable.conf':
+  ensure  => 'present',
+  content => 'SetEnvIf X-Forwarded-Proto https HTTPS=on'
+}
+
+class {'vhost_settings': }
 
 file { '/root/.ssh':
   ensure => 'directory',
@@ -33,32 +58,6 @@ file { '/root/.ssh/config':
   mode    => '0700',
   owner => 'root',
   group => 'root',
-}
-
-drush::config { 'fetcher-class':
-  file  => 'fetcher-services',
-  key   => "fetcher']['info_fetcher.class",
-  value => 'FetcherServices\InfoFetcher\FetcherServices',
-}
-
-drush::config { 'fetcher-services-host':
-  file  => 'fetcher-services',
-  key   => "fetcher']['info_fetcher.config']['host",
-  value => 'https://extranet.zivtech.com',
-}
-
-# Inside penelope the regular `services` command cannot do its thing.
-drush::config { 'fetcher-apache-restart':
-  file  => 'fetcher-services',
-  key   => "fetcher']['server.restart_command",
-  value => 'apache2ctl graceful',
-}
-
-drush::config { 'fetcher-services-server-port':
-  file   => 'fetcher-services',
-  key    => "fetcher']['server.port",
-  string => false,
-  value  => $drupal_php::server::apache::server_port,
 }
 
 package { 'redis-server':
@@ -76,30 +75,13 @@ user { 'root':
   password => '$6$Q6Rg6ZS3$i4ibqDLRQQvJHq0OSOWhDGjSGmBdXaTLhDWkWxKgRfcX8Ll5BSFIME67Q4HL/75LwJHcZoCDfFA8LuGlpjyQK0',
 }
 
-# TODO: opcache tuning.
-# class { 'php::extension::opcache':
-#   require => Class['php::dev'],
-#   # settings => [
-#   #   'set ".anon/opcache.max_accelerated_files" "12000"',
-#   #   'set ".anon/opcache.memory_consumption" "256"',
-#   #   'set ".anon/opcache.validate_timestamps" "0"',
-#   # ],
-# }~>
-# file { '/etc/php5/apache2/conf.d/opcache2.ini':
-#   ensure  => file,
-#   content => "opcache.max_accelerated_files = 12000\nopcache.memory_consumption = 256\nopcache.validate_timestamps = 0",
-#   owner   => 'root',
-#   group   => 'root',
-# }
-
-
 package { 'zip':
   ensure   => 'installed',
   provider => 'pecl',
 }
 
 class { 'mysql::server':
-  root_password   => 'strongpassword',
+  root_password    => 'strongpassword',
   service_enabled  => true,
   service_manage   => true,
   # Upstart is not supported inside a docker container.
@@ -112,15 +94,71 @@ package { 'apt-transport-https':
 }->
 
 class { 'nodejs':
-  manage_repo => true,
-}~>
+  version => 'v4.3.0',
+  make_install => false,
+}->
 
 file { '/usr/bin/node':
   ensure => 'link',
-  target => '/usr/bin/nodejs',
+  target => '/usr/local/node/node-default/bin/node',
 }->
 
 package { 'lepew-penelope':
   ensure   => 'installed',
   provider => 'npm',
+}
+
+class { 'drush':
+  git_ref => '8.0.3',
+}
+
+drush::config { 'root':
+  key   => 'root',
+  value => '/var/www/html',
+}
+
+drush::config { 'disable-prompts':
+  key    => 'yes',
+  value  => 'TRUE',
+  string => false,
+}
+
+# Add WordPress CLI
+wget::fetch { 'WordPress CLI':
+  source      => 'https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar',
+  destination => '/tmp/wp-cli.phar',
+  require     => Package['wget'],
+}->
+
+file { '/usr/local/bin/wp':
+  ensure => 'file',
+  source => '/tmp/wp-cli.phar',
+  mode   => '755',
+}
+
+# Install Ruby and compass
+package { 'ruby-dev':
+  ensure => 'present'
+}->
+
+package { 'ruby-compass':
+  ensure => 'present'
+}->
+
+exec { 'gem install bundler':
+  path    => ['/usr/bin/'],
+  creates => '/usr/local/bin/bundler',
+}
+
+# Install Drupal Console
+wget::fetch { 'Drupal Console':
+  source      => 'https://drupalconsole.com/installer',
+  destination => '/tmp/drupal.phar',
+  require     => Package['wget'],
+}->
+
+file { '/usr/local/bin/drupal':
+  ensure => 'file',
+  source => '/tmp/drupal.phar',
+  mode   => '755',
 }

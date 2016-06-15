@@ -7,3 +7,5 @@ builder/ubuntu-14.04_lamp.tar
 packer/packer_cache
 ssh_credentials
 builds
+.tmp/
+modules/
