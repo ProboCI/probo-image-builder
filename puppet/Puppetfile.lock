@@ -1,7 +1,9 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
-    counsyl-sys (0.9.19)
+    counsyl-packer (0.9.18)
+      counsyl-sys (< 2.0.0, >= 0.9.18)
+    counsyl-sys (0.9.22)
       puppetlabs-stdlib (< 5.0.0, >= 4.7.0)
     garethr-docker (5.0.0)
       puppetlabs-apt (<= 3.0.0, >= 1.8.0)
@@ -55,14 +57,6 @@ FORGE
       puppetlabs-vcsrepo (>= 0)
 
 GIT
-  remote: https://github.com/zivtech/puppet-packer-1.git
-  ref: master
-  sha: 3827aa0efda20849bfca39de2bcaf9278a412e9f
-  specs:
-    zivtech-packer (0.9.17)
-      counsyl-sys (< 2.0.0, >= 0.9.18)
-
-GIT
   remote: https://github.com/zivtech/puppet-drupal-solr.git
   ref: master
   sha: 09f3bae2b498c79315a0e735111c2dad83e81d0e
@@ -71,9 +65,9 @@ GIT
       rodjek-logrotate (>= 0.0.0)
 
 DEPENDENCIES
+  counsyl-packer (>= 0)
   garethr-docker (>= 0)
   jhoblitt-selenium (>= 0)
-  zivtech-packer (>= 0)
   maestrodev-wget (>= 0)
   puppetlabs-apache (>= 0)
   puppetlabs-git (>= 0)
@@ -84,3 +78,4 @@ DEPENDENCIES
   zivtech-drupal_php (>= 0)
   zivtech-drush (>= 0)
   zivtech-solr (>= 0)
+

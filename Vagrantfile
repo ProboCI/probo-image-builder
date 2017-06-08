@@ -4,14 +4,19 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "lepew"
-  #config.vm.box_url = "http://domain.com/path/to/above.box"
+  config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
   config.vm.network "private_network", type: "dhcp"
   config.vm.network :private_network, ip: "192.168.33.254"
 
   config.vm.provider :virtualbox do |vb|
     # Use VBoxManage to customize the VM. For example to change memory:
     vb.customize ["modifyvm", :id, "--memory", "2048"]
+  end
+
+  # Sync all of the projects to your local machine
+  # To enable, create a workspace directory in this directory
+  if File.directory?("workspace")
+    config.vm.synced_folder "workspace", "/workspace" , type: "nfs"
   end
 
   # Install puppet.
