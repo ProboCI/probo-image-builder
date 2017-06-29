@@ -106,10 +106,25 @@ file { '/usr/bin/node':
 package { 'lepew-penelope':
   ensure   => 'installed',
   provider => 'npm',
+}->
+
+file { '/usr/bin/penelope':
+  ensure => 'link',
+  target => '/usr/local/node/node-v4.3.0/lib/node_modules/lepew-penelope/bin/penelope'
+}->
+
+file { '/usr/bin/penelope-control':
+  ensure => 'link',
+  target => '/usr/local/node/node-v4.3.0/lib/node_modules/lepew-penelope/bin/penelope-control'
+}->
+
+file { '/usr/bin/penelope-format':
+  ensure => 'link',
+  target => '/usr/local/node/node-v4.3.0/lib/node_modules/lepew-penelope/bin/penelope-format'
 }
 
 class { 'drush':
-  git_ref => '8.0.3',
+  git_ref => '8.x',
 }
 
 drush::config { 'root':

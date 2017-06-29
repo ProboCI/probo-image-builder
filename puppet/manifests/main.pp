@@ -4,8 +4,8 @@ class { 'docker':
 }
 
 file { '/opt/packer':
-    ensure => 'directory',
-    mode   => '0755'
+  ensure => 'directory',
+  mode   => '0755'
 }->
 
 class { 'packer':

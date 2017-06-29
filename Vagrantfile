@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Sync all of the projects to your local machine
   # To enable, create a workspace directory in this directory
   if File.directory?("workspace")
-    config.vm.synced_folder "workspace", "/workspace" , type: "nfs"
+    config.vm.synced_folder "workspace", "/vagrant/workspace" , type: "nfs"
   end
 
   # Install puppet.
