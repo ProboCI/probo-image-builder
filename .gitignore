@@ -1,10 +1,12 @@
+.DS_Store
 .vagrant
-puppet/modules
+puppet/modules/
 *.swp
 .librarian
 .tmp
 builder/ubuntu-14.04_lamp.tar
 packer/packer_cache
+packer/scripts/.DS_Store
 ssh_credentials
 builds
 .tmp/
