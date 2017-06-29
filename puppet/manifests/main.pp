@@ -10,7 +10,7 @@ file { '/opt/packer':
 
 class { 'packer':
   bin_dir => '/opt/packer',
-  version => '0.8.6',
+  version => '1.0.2',
 }->
 
 file { '/usr/bin/packer':

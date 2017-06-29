@@ -8,4 +8,6 @@ packer/packer_cache
 ssh_credentials
 builds
 .tmp/
-modules/
+workspace/
+!workspace/.gitkeep
+!puppet/modules/.gitkeep
