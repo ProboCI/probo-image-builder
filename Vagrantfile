@@ -13,12 +13,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
-  # Sync all of the projects to your local machine
-  # To enable, create a workspace directory in this directory
-  if File.directory?("workspace")
-    config.vm.synced_folder "workspace", "/vagrant/workspace" , type: "nfs"
-  end
-
   # Install puppet.
   config.vm.provision "shell", path: "scripts/puppet_setup.sh"
 
