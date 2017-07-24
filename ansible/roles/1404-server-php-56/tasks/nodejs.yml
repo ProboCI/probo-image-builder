@@ -1,0 +1,36 @@
+---
+
+# - name: get nodejs gpg key
+#   get_url:
+#     url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+#     dest: '/tmp/nodejs.gpg.key'
+#     owner: root
+#     group: root
+#     mode: 0644
+#     validate_certs: no
+#     sha256sum: '773b328f7b1d6db58a8c6a7fc89e2ed58ac5e06c3ab148411cf8272be7b1c472'
+
+- name: add nodejs gpg signing key
+  apt_key:
+    keyserver: 'pgp.mit.edu'
+    id: 9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280
+
+  # apt_key:
+  #   file: '/tmp/nodejs.gpg.key'
+  #   state: present
+  #   id: '9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280'
+
+- name: add nodejs apt repo
+  apt_repository:
+    repo: deb https://deb.nodesource.com/node_4.x trusty main
+    state: present
+  register: nodejsaptrepo
+
+- name: update apt
+  apt: update_cache=yes
+  when: nodejsaptrepo.changed
+
+- name: install nodejs
+  apt:
+    name: nodejs
+    state: present

@@ -1,0 +1,14 @@
+---
+
+- name: install ruby and compass
+  apt:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - ruby-dev
+    - ruby-compass
+
+- name: install gem bundler
+  gem:
+    name: bundler
+    state: latest

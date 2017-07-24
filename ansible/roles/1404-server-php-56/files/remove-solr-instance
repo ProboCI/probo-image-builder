@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+set -e
+
+if [ ! $1 ] ; then
+  echo >&2 "You did not specify a name for the solr core to remove."
+  echo >&2 ""
+  echo >&2 "Usage: remove-solr-instance [core name]"
+  exit 1
+fi
+
+NAME=$1
+
+sudo -u solr -- /opt/solr/bin/solr delete -c "$NAME"
+echo "A solr core called $NAME has been removed"

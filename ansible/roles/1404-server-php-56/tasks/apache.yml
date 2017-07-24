@@ -1,0 +1,65 @@
+---
+
+- name: install apache
+  apt: name={{ item }} state=present
+  with_items:
+    - apache2
+    - apache2-utils
+
+- name: ensure apache is stopped
+  shell: service apache2 stop
+
+- name: fix default apache vhost
+  copy:
+    src: apache-default-host.conf
+    dest: /etc/apache2/sites-available/000-default.conf
+    owner: root
+    mode: 0644
+
+- name: enable apache modules
+  apache2_module: state=present name={{ item }}
+  with_items:
+    - actions
+    - alias
+    - deflate
+    - dir
+    - expires
+    - headers
+    - mime
+    - negotiation
+    - rewrite
+    - setenvif
+
+- name: disable apache modules
+  apache2_module: state=absent name={{ item }} force=true
+  with_items:
+    - autoindex
+
+- name: add custom default index page
+  template: src=index.html.j2 dest=/var/www/html/index.html owner=root mode=0644
+
+- name: disable server signature
+  lineinfile:
+    dest: /etc/apache2/conf-available/security.conf
+    regexp: '^ServerSignature'
+    line: 'ServerSignature Off'
+
+- name: set prod server tokens
+  lineinfile:
+    dest: /etc/apache2/conf-available/security.conf
+    regexp: '^ServerTokens'
+    line: 'ServerTokens Prod'
+
+- name: ensure www directory exists
+  file:
+    path: '/var/www'
+    state: 'directory'
+    recurse: yes
+    mode: 0755
+    owner: 'root'
+    group: 'root'
+
+- name: ensure www/default is removed
+  file:
+    path: '/var/www/default'
+    state: 'absent'

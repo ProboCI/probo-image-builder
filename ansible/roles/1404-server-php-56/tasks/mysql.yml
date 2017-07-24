@@ -1,0 +1,40 @@
+---
+
+- name: install mysql
+  apt: name={{ item }} state=present
+  with_items:
+    - 'mysql-server-5.5'
+    - 'mysql-server'
+
+- name: start mysql service
+  shell: service mysql start
+
+- name: install mysql python extension for ansible
+  apt: name=python-mysqldb state=present
+
+- name: delete anonymous mysql users
+  mysql_user: name='' state=absent
+
+- name: remove the mysql test database
+  mysql_db: db=test state=absent
+
+# 'localhost' needs to be the last item for idempotency, see
+# http://ansible.cc/docs/modules.html#mysql-user
+- name: change root user password on first run
+  mysql_user: login_user=root
+  args:
+    name: root
+    password: '{{ mysql_root_password }}'
+    priv: '*.*:ALL,GRANT'
+    host: '{{ item }}'
+  with_items:
+    - '{{ ansible_hostname }}'
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: add my.cnf file for root
+  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root mode=0600
+
+- name: ensure mysql is stopped
+  shell: service mysql stop
