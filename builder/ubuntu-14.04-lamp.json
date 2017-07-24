@@ -10,15 +10,13 @@
   "provisioners": [
     {
       "type": "shell",
-      "script": "install_puppet.sh"
+      "script": "ansible.sh"
     },
     {
-      "type": "puppet-masterless",
-      "hiera_config_path": "../puppet/hiera.yaml",
-      "manifest_file": "../puppet/manifests/lamp.pp",
-      "module_paths": [
-        "../puppet/modules",
-        "../puppet/custom-modules"
+      "type": "ansible-local",
+      "playbook_file": "../ansible/14.04-php-5.6.yml",
+      "role_paths": [
+        "../ansible/roles/1404-server-php-56"
       ]
     }
   ],
