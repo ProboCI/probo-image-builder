@@ -1,0 +1,52 @@
+---
+
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+
+    - name: install zip
+      apt:
+        name: 'zip'
+        state: 'present'
+
+    - name: download packer
+      get_url:
+        url: 'https://releases.hashicorp.com/packer/1.0.3/packer_1.0.3_linux_amd64.zip'
+        dest: '/tmp/packer.zip'
+        sha256sum: 0e10169ef9cf3fd55dcc9dc213b9995170f7712e8a162ca2f5109d62bfbe7529
+        owner: 'root'
+        group: 'root'
+        mode: 0755
+
+    - name: extract packer
+      unarchive:
+        src:  '/tmp/packer.zip'
+        dest: '/usr/local/bin'
+        remote_src: yes
+        owner: 'root'
+        group: 'root'
+        mode: 0755
+        creates: /usr/local/bin/packer
+
+    - name: add docker key
+      apt_key:
+        id: '9DC858229FC7DD38854AE2D88D81803C0EBFCD88'
+        keyserver: 'keyserver.ubuntu.com'
+        state: present
+      register: dockerapt
+
+    - name: update apt
+      apt:
+        update_cache: yes
+      when: dockerapt.changed
+
+    - name: add docker apt repo
+      apt_repository:
+        repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu trusty stable'
+        state: present
+
+    - name: install docker
+      apt:
+        name: 'docker-ce'
+        state: 'present'

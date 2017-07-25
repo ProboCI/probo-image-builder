@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
+  config.vm.box = "ubuntu/trusty64"
   config.vm.network "private_network", type: "dhcp"
   config.vm.network :private_network, ip: "192.168.33.254"
 
@@ -13,19 +13,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
-  # Install puppet.
-  config.vm.provision "shell", path: "scripts/puppet_setup.sh"
-
-  # Run puppet
-  config.librarian_puppet.puppetfile_dir = "puppet"
-  config.vm.provision "puppet" do |puppet|
-    puppet.manifest_file = "main.pp"
-    puppet.options = ["--debug", "--trace"]
-    puppet.module_path = [
-      "puppet/modules",
-      "puppet/custom-modules"
-    ]
-    puppet.manifests_path = "puppet/manifests"
+  config.vm.provision "ansible" do |ansible|
+    ansible.verbose = "v"
+    ansible.playbook = "ansible/vagrant.yml"
   end
 
   config.vm.provision "shell", path: "scripts/create_image.sh"

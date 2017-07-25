@@ -35,9 +35,6 @@
   with_items:
     - autoindex
 
-- name: add custom default index page
-  template: src=index.html.j2 dest=/var/www/html/index.html owner=root mode=0644
-
 - name: disable server signature
   lineinfile:
     dest: /etc/apache2/conf-available/security.conf
