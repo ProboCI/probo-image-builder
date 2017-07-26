@@ -1,23 +1,22 @@
-# Lepew
+# Probo Image Builder
 
-Lepew is a (not-so) secret project aiming to build a CI & QA tool that can be
-used to streamline the use of [Pull-Request](http://yangsu.github.io/pull-request-tutorial/) based workflow
-to persist environments so that changes can be tested interactively by people
-after being tested automatically by machines.
+This project is used to create docker images needed to run
+[ProboCi](https://github.com/proboci/probo).
 
+## Dependencies
 
-## Installing
+1. [Ansible](https://docs.ansible.com/ansible/latest/index.html)
+1. [VirtualBox](https://www.virtualbox.org/)
+1. [Vagrant](https://www.vagrantup.com)
 
-1. Install [packer](https://packer.io/)
-1. Install [VirtualBox](https://www.virtualbox.org/)
-1. Install [vagrant](https://www.vagrantup.com)
-1. Install [vagrant puppet librarian](https://github.com/mhahn/vagrant-librarian-puppet) using the command:
-`vagrant plugin install vagrant-librarian-puppet`
+## Running
+
+1. After installing dependencies...
 1. Run `vagrant up`
 
-This will use packer to build a fresh ubuntu 14.04 base box directly from the
-canonical ISO, then use packer inside the VM to build Docker images for
-Ubuntu 14.04, and it will install and configure packages needed for running
+This will use packer to build a fresh ubuntu base box using a predefined vagrant
+box. The VM will run packer inside the VM to build Docker images for Ubuntu
+14.04, and it will install and configure packages needed for running
 [ProboCi](https://github.com/proboci/probo).
 
 After a successful `vagrant up` or `vagrant provision`, there should be a
@@ -28,8 +27,8 @@ check the validity of this container jump onto the VM
 - `sudo su`
 - `docker images`
 
-You should see several images. `proboci/ubuntu-14.04-lamp:intermediary` is the
-image that should be ready for deployment within Probo.
-`proboci/ubuntu-14.04-lamp:latest` is an intermediary build artifact that has
-everything installed but does not have a proper path environment set for
-composer.
+You should see several images. `proboci/ubuntu-14.04-lamp:nightly` is the
+image that should be ready for deployment within Probo. This image will be saved
+to a tar file that can be imported to other dev environments for testing Probo
+prior to deployment. The tar file in question will be placed in the `workspace`
+directory and will be called `ubuntu-14.04-lamp-nightly.tar`
