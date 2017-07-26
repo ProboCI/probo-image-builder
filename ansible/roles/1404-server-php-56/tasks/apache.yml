@@ -55,8 +55,3 @@
     mode: 0755
     owner: 'root'
     group: 'root'
-
-- name: ensure www/default is removed
-  file:
-    path: '/var/www/default'
-    state: 'absent'

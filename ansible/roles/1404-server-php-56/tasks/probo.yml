@@ -1,5 +1,13 @@
 ---
 
+- name: ensure default apache directories are removed
+  file:
+    path: '/var/www/{{ item }}'
+    state: 'absent'
+  with_items:
+    - 'default'
+    - 'html'
+
 - name: install proboscis
   npm:
     name: 'probo-proboscis'
