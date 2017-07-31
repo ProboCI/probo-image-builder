@@ -23,6 +23,17 @@
     - 'proboscis-control'
     - 'proboscis-format'
 
+# Support legacy docker images.
+- name: add penelope symlinks
+  file:
+    src: '/usr/lib/node_modules/probo-proboscis/bin/{{ item.src }}'
+    dest: '/usr/bin/{{ item.dest }}'
+    state: 'link'
+  with_items:
+    - { src: 'proboscis', dest: 'penelope' }
+    - { src: 'proboscis-control', dest: 'penelope-control' }
+    - { src: 'proboscis-format', dest: 'penelope-format' }
+
 - name: ensure drush conf directory exists
   file:
     path: '/etc/drush/conf.d'
