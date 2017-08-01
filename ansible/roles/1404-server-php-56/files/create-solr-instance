@@ -1,0 +1,29 @@
+#! /usr/bin/env bash
+
+set -e
+
+if [ ! $1 ] ; then
+  echo >&2 "You did not specify a name for this solr core."
+  echo >&2 ""
+  echo >&2 "We suggest using the name of your website."
+  echo >&2 ""
+  echo >&2 "Usage: create-solr-instance [core name] [config directory]"
+  exit 1
+fi
+
+NAME=$1
+
+CONF='search_api_solr_8.x-1.0'
+SITE_CONF=$(find . -name '6.x' -type d | grep solr | head -n 1)
+echo $SITE_CONF
+
+if [[ -n "${SITE_CONF/[ ]*\n/}" ]] ; then
+  read -p "We appear to have found a solr configuration at \`$SITE_CONF\`, would you like to use it (Y/N)?" -n 1 -r
+  if [[ $REPLY =~ ^[Yy]$ ]] ; then
+    CONF="$SITE_CONF"
+  fi
+fi
+
+sudo -u solr -- /opt/solr/bin/solr create -c "$NAME" -d "$CONF"
+echo "A solr core called $NAME has been added with configuration $CONF has been added"
+echo "Connect to it at localhost:8983/solr/$NAME"

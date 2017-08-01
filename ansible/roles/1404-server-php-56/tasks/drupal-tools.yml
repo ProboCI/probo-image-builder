@@ -1,0 +1,24 @@
+---
+
+- name: install drush
+  get_url:
+    url: https://github.com/drush-ops/drush/releases/download/8.1.11/drush.phar
+    dest: /usr/local/bin/drush
+    mode: 0755
+
+- name: install drupal console
+  get_url:
+    url: https://drupalconsole.com/installer
+    dest: /usr/local/bin/drupal
+    mode: 0755
+
+- name: add composer install script
+  copy:
+    src: install-composer
+    dest: /root/install-composer
+    mode: 0750
+
+- name: run composer install
+  command: /root/install-composer
+  args:
+    creates: /usr/local/bin/composer

@@ -1,0 +1,58 @@
+---
+
+- name: ensure default apache directories are removed
+  file:
+    path: '/var/www/{{ item }}'
+    state: 'absent'
+  with_items:
+    - 'default'
+    - 'html'
+
+- name: install proboscis
+  npm:
+    name: 'probo-proboscis'
+    global: yes
+
+- name: add proboscis symlinks
+  file:
+    src: '/usr/lib/node_modules/probo-proboscis/bin/{{ item }}'
+    dest: '/usr/bin/{{ item }}'
+    state: 'link'
+  with_items:
+    - 'proboscis'
+    - 'proboscis-control'
+    - 'proboscis-format'
+
+# Support legacy docker images.
+- name: add penelope symlinks
+  file:
+    src: '/usr/lib/node_modules/probo-proboscis/bin/{{ item.src }}'
+    dest: '/usr/bin/{{ item.dest }}'
+    state: 'link'
+  with_items:
+    - { src: 'proboscis', dest: 'penelope' }
+    - { src: 'proboscis-control', dest: 'penelope-control' }
+    - { src: 'proboscis-format', dest: 'penelope-format' }
+
+- name: ensure drush conf directory exists
+  file:
+    path: '/etc/drush/conf.d'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: 0755
+
+- name: set drush conf
+  copy:
+    src: 'drushrc.php'
+    dest: '/etc/drush/drushrc.php'
+    owner: 'root'
+    group: 'root'
+    mode: 0644
+
+- name: set drush env settings for probo
+  copy:
+    src: 'drush-environment.php'
+    dest: '/etc/drush/conf.d/environment.php'
+    owner: 'root'
+    mode: 0644

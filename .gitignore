@@ -11,5 +11,4 @@ ssh_credentials
 builds
 .tmp/
 workspace/
-!workspace/.gitkeep
-!puppet/modules/.gitkeep
+ansible/*.retry
