@@ -22,12 +22,3 @@
     - 'zip'
 
 - include: ntp.yml
-- include: mysql.yml
-- include: apache.yml
-- include: php.yml
-- include: drupal-tools.yml
-- include: nodejs.yml
-- include: probo.yml
-- include: ruby.yml
-- include: wp.yml
-- include: solr.yml

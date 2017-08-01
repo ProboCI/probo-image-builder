@@ -1,0 +1,37 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "ubuntu:14.04",
+      "pull": true,
+      "commit": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "../ansible.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../../ansible/14.04-php7.1.yml",
+      "role_paths": [
+        "../../ansible/roles/14.04-apache",
+        "../../ansible/roles/14.04-base",
+        "../../ansible/roles/14.04-mysql",
+        "../../ansible/roles/14.04-nodejs",
+        "../../ansible/roles/14.04-php7.1",
+        "../../ansible/roles/14.04-probo"
+      ]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "tag": "php7.1-intermediary",
+        "repository": "proboci/ubuntu-14.04-lamp"
+      }
+    ]
+  ]
+}

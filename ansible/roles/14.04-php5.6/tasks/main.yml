@@ -32,18 +32,17 @@
     - 'php-uploadprogress'
     - 'imagemagick'
 
-- name: install extra tools
+- name: install redis
   apt:
     name: redis-server
     state: present
 
-- name: install extra tools
+- name: install memcached
   apt:
     name: memcached
     state: present
 
-
-- name: install extra tools
+- name: install libzip
   apt:
     name: libzip-dev
     state: present
@@ -54,4 +53,3 @@
     state: present
 
 - include: php-ini.yml
-

@@ -10,13 +10,18 @@
   "provisioners": [
     {
       "type": "shell",
-      "script": "ansible.sh"
+      "script": "../ansible.sh"
     },
     {
       "type": "ansible-local",
-      "playbook_file": "../ansible/14.04-php-5.6.yml",
+      "playbook_file": "../../ansible/14.04-php7.0.yml",
       "role_paths": [
-        "../ansible/roles/1404-server-php-56"
+        "../../ansible/roles/14.04-apache",
+        "../../ansible/roles/14.04-base",
+        "../../ansible/roles/14.04-mysql",
+        "../../ansible/roles/14.04-nodejs",
+        "../../ansible/roles/14.04-php7.0",
+        "../../ansible/roles/14.04-probo"
       ]
     }
   ],
@@ -24,7 +29,7 @@
     [
       {
         "type": "docker-tag",
-        "tag": "intermediary",
+        "tag": "php7.0-intermediary",
         "repository": "proboci/ubuntu-14.04-lamp"
       }
     ]

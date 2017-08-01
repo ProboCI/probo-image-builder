@@ -1,0 +1,15 @@
+---
+
+- name: 'set php ini values'
+  lineinfile:
+    path: /etc/php/7.0/apache2/php.ini
+    regexp: '^{{ item.name }}'
+    line: 'upload_max_filesize = {{ item.value }}'
+  with_items:
+    - { name: 'memory_limit', value: '{{ memory_limit }}' }
+    - { name: 'error_reporting', value: '{{ error_reporting }}' }
+    - { name: 'expose_php', value: '{{ expose_php }}' }
+    - { name: 'display_errors', value: '{{ display_errors }}' }
+    - { name: 'display_startup_errors', value: '{{ display_startup_errors }}' }
+    - { name: 'post_max_size', value: '{{ post_max_size }}' }
+    - { name: 'upload_max_filesize', value: '{{ upload_max_filesize }}' }

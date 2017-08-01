@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+
+  roles:
+    - { role: '14.04-base' }
+    - { role: '14.04-mysql' }
+    - { role: '14.04-apache' }
+    - { role: '14.04-nodejs' }
+    - { role: '14.04-php7.0' }
+    - { role: '14.04-probo' }
