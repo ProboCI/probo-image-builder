@@ -3,7 +3,6 @@
 - name: install mysql
   apt: name={{ item }} state=present
   with_items:
-    - 'mysql-server-5.5'
     - 'mysql-server'
 
 - name: start mysql service
