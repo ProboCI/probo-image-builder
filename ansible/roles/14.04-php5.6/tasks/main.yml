@@ -1,0 +1,55 @@
+---
+
+- name: add packages.sury.org apt repo
+  apt_repository:
+    repo: 'ppa:ondrej/php'
+    state: present
+  register: phpaptrepo
+
+- name: update apt
+  apt: update_cache=yes
+  when: phpaptrepo.changed
+
+- name: install php dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - 'php5.6'
+    - 'php5.6-cli'
+    - 'php5.6-common'
+    - 'php5.6-curl'
+    - 'php5.6-dev'
+    - 'php5.6-gd'
+    - 'php5.6-json'
+    - 'php5.6-ldap'
+    - 'php5.6-mcrypt'
+    - 'php5.6-mysql'
+    - 'php5.6-readline'
+    - 'php5.6-xml'
+    - 'libapache2-mod-php5.6'
+    - 'php-redis'
+    - 'php5-imagick'
+    - 'php-pear'
+    - 'php-uploadprogress'
+    - 'imagemagick'
+
+- name: install redis
+  apt:
+    name: redis-server
+    state: present
+
+- name: install memcached
+  apt:
+    name: memcached
+    state: present
+
+- name: install libzip
+  apt:
+    name: libzip-dev
+    state: present
+
+- name: install php zip
+  pear:
+    name: pecl/zip
+    state: present
+
+- include: php-ini.yml

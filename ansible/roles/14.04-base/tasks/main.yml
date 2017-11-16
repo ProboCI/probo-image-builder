@@ -1,0 +1,24 @@
+---
+- name: update apt
+  apt:
+    update_cache: yes
+
+- name: update all packages to the latest version
+  apt:
+    upgrade: dist
+
+- name: necessities
+  apt: name={{ item }} state=present
+  with_items:
+    - 'apt-transport-https'
+    - 'ca-certificates'
+    - 'curl'
+    - 'git'
+    - 'lsb-release'
+    - 'python-software-properties'
+    - 'software-properties-common'
+    - 'vim'
+    - 'wget'
+    - 'zip'
+
+- include: ntp.yml

@@ -1,0 +1,7 @@
+---
+
+- include: drupal-tools.yml
+- include: probo.yml
+- include: ruby.yml
+- include: wp.yml
+- include: solr.yml
