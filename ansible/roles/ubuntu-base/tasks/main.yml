@@ -16,6 +16,7 @@
     - 'git'
     - 'lsb-release'
     - 'python-software-properties'
+    - 'sendmail'
     - 'software-properties-common'
     - 'vim'
     - 'wget'
