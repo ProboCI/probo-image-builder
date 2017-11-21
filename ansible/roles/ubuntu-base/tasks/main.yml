@@ -22,4 +22,4 @@
     - 'wget'
     - 'zip'
 
-- include: ntp.yml
+- import_tasks: ntp.yml

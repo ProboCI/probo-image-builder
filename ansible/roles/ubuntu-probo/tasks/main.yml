@@ -1,7 +1,7 @@
 ---
 
-- include: drupal-tools.yml
-- include: probo.yml
-- include: ruby.yml
-- include: wp.yml
-- include: solr.yml
+- import_tasks: drupal-tools.yml
+- import_tasks: probo.yml
+- import_tasks: ruby.yml
+- import_tasks: wp.yml
+- import_tasks: solr.yml

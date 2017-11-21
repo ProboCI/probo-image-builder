@@ -48,4 +48,4 @@
     name: memcached
     state: present
 
-- include: php-ini.yml
+- import_tasks: php-ini.yml

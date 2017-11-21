@@ -53,4 +53,4 @@
     name: pecl/zip
     state: present
 
-- include: php-ini.yml
+- import_tasks: php-ini.yml
