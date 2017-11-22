@@ -1,4 +1,17 @@
 ---
+- name: install chrome signing key
+  apt_key:
+    url: "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+    state: present
+
+- name: add chrome apt repo
+  apt_repository:
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+    filename: 'google-chrome'
+    update_cache: yes
+  register: google-chrome
+
 - name: update apt
   apt:
     update_cache: yes
@@ -7,19 +20,27 @@
   apt:
     upgrade: dist
 
-- name: necessities
+- name: install necessities
   apt: name={{ item }} state=present
   with_items:
     - 'apt-transport-https'
     - 'ca-certificates'
     - 'curl'
     - 'git'
+    - 'libnss3'
     - 'lsb-release'
+    - 'netcat-openbsd'
     - 'python-software-properties'
     - 'sendmail'
     - 'software-properties-common'
     - 'vim'
     - 'wget'
     - 'zip'
+
+- name: install google-chrome-stable
+  apt:
+    name: google-chrome-stable
+    state: present
+    force: yes
 
 - import_tasks: ntp.yml

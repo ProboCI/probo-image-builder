@@ -6,7 +6,7 @@
     - apache2
     - apache2-utils
 
-- name: ensure apache is stopped
+- name: ensure apache service is stopped
   shell: service apache2 stop
 
 - name: fix default apache vhost
@@ -47,6 +47,17 @@
     regexp: '^ServerTokens'
     line: 'ServerTokens Prod'
 
+- name: add ssl_environment_variable config
+  copy:
+    src: ssl_environment_variable.conf
+    dest: /etc/apache2/conf-available/ssl_environment_variable.conf
+    owner: root
+    mode: 0644
+
+- name: enable ssl_environment_variable config
+  command: a2enconf ssl_environment_variable
+  register: a2enconf_ssl_env_var
+
 - name: ensure www directory exists
   file:
     path: '/var/www'
@@ -55,3 +66,6 @@
     mode: 0755
     owner: 'root'
     group: 'root'
+
+- name: ensure apache service is started
+  shell: service apache2 start
