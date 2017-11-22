@@ -48,4 +48,4 @@ else
   scripts/load-docker-images.sh
 fi
 
-echo -e "${GREEN}The docker image should be ready to push to the docker hub now.${NC}"
+echo -e "${GREEN}The newly generated docker images should imported to docker and ready to push to the docker hub now.${NC}"

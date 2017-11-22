@@ -1,28 +1,42 @@
 #!/usr/bin/env bash
-packer=/usr/local/bin/packer
-1404-lamp=proboci/ubuntu-14.04-lamp
-1604-lamp=proboci/ubuntu-16.04-lamp
+
+INFO='\033[0;34m'
+NC='\033[0m' # No Color
+
+PACKER=/usr/local/bin/packer
 
 cd /vagrant/builder/14.04-php5.6
-$packer build ubuntu-14.04-lamp.json
-docker build -t="$1404-lamp:php5.6-nightly" .
+$PACKER build ubuntu-14.04-lamp.json
+echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php5.6-nightly...${NC}"
+docker build -t="proboci/ubuntu-14.04-lamp:php5.6-nightly" .
+echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php5.6-nightly built.${NC}"
 
 cd ../14.04-php7.0
-$packer build ubuntu-14.04-lamp.json
-docker build -t="$1404-lamp:php7.0-nightly" .
+$PACKER build ubuntu-14.04-lamp.json
+echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php7.0-nightly...${NC}"
+docker build -t="proboci/ubuntu-14.04-lamp:php7.0-nightly" .
+echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php7.0-nightly built.${NC}"
 
 cd ../14.04-php7.1
-$packer build ubuntu-14.04-lamp.json
-docker build -t="$1404-lamp:php7.1-nightly" .
+$PACKER build ubuntu-14.04-lamp.json
+echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php7.1-nightly...${NC}"
+docker build -t="proboci/ubuntu-14.04-lamp:php7.1-nightly" .
+echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php7.1-nightly built.${NC}"
 
 cd ../16.04-php7.0
-$packer build ubuntu-16.04-lamp.json
-docker build -t="$1604-lamp:php7.0-nightly" .
+$PACKER build ubuntu-16.04-lamp.json
+echo -e "${INFO}Building proboci/ubuntu-16.04-lamp:php7.0-nightly...${NC}"
+docker build -t="proboci/ubuntu-16.04-lamp:php7.0-nightly" .
+echo -e "${INFO}Image proboci/ubuntu-16.04-lamp:php7.0-nightly built.${NC}"
 
 cd ../16.04-php7.1
-$packer build ubuntu-16.04-lamp.json
-docker build -t="$1604-lamp:php7.1-nightly" .
+$PACKER build ubuntu-16.04-lamp.json
+echo -e "${INFO}Building proboci/ubuntu-16.04-lamp:php7.1-nightly...${NC}"
+docker build -t="proboci/ubuntu-16.04-lamp:php7.1-nightly" .
+echo -e "${INFO}Image proboci/ubuntu-16.04-lamp:php7.1-nightly built.${NC}"
 
 cd ../16.04-php7.2
-$packer build ubuntu-16.04-lamp.json
-docker build -t="$1604-lamp:php7.2-nightly" .
+$PACKER build ubuntu-16.04-lamp.json
+echo -e "${INFO}Building proboci/ubuntu-16.04-lamp:php7.2-nightly...${NC}"
+docker build -t="proboci/ubuntu-16.04-lamp:php7.2-nightly" .
+echo -e "${INFO}Image proboci/ubuntu-16.04-lamp:php7.2-nightly built.${NC}"
