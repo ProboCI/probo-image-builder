@@ -8,7 +8,7 @@ INFO='\033[0;34m'
 ERROR='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
-RUNNING=$("docker container ls | grep proboci" 2> /dev/null)
+RUNNING=$(docker container ls | grep proboci)
 
 if [ ! $? -eq 0 ]; then
     echo -e "${INFO}No containers exist. Moving on.${NC}"
@@ -18,7 +18,7 @@ else
   echo -e "${INFO}Old containers have been deleted.${NC}"
 fi
 
-RUNNING=$("docker images | grep proboci" 2> /dev/null)
+RUNNING=$(docker images | grep proboci)
 
 if [ ! $? -eq 0 ]; then
     echo -e "${INFO}No images exist. Moving on."
@@ -38,7 +38,7 @@ vagrant box update
 echo -e "${INFO}Running vagrant up to build VM and save nightly docker images.${NC}"
 vagrant up
 
-RUNNING=$("docker" 2> /dev/null)
+RUNNING=$(docker 2> /dev/null)
 
 if [ ! $? -eq 0 ]; then
   echo -e "${ERROR}Docker not installed. Please install docker. https://www.docker.com/${NC}"

@@ -16,6 +16,10 @@
   when: nodejsaptrepo.changed
 
 - name: install nodejs
+  retries: 3
+  delay: 1
   apt:
     name: nodejs
     state: present
+  register: installnodejs
+  until: installnodejs | success
