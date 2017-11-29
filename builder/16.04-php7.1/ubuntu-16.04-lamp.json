@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "docker",
-      "image": "ubuntu:14.04",
+      "image": "ubuntu:16.04",
       "pull": true,
       "commit": true
     }
@@ -30,7 +30,7 @@
       {
         "type": "docker-tag",
         "tag": "php7.1-intermediary",
-        "repository": "proboci/ubuntu-14.04-lamp"
+        "repository": "proboci/ubuntu-16.04-lamp"
       }
     ]
   ]

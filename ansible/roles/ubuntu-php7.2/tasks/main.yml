@@ -1,0 +1,51 @@
+---
+
+- name: add packages.sury.org apt repo
+  apt_repository:
+    repo: 'ppa:ondrej/php'
+    state: present
+  register: phpaptrepo
+
+- name: update apt
+  apt: update_cache=yes
+  when: phpaptrepo.changed
+
+- name: install php dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - 'php7.2'
+    - 'php7.2-bcmath'
+    - 'php7.2-bz2'
+    - 'php7.2-cli'
+    - 'php7.2-common'
+    - 'php7.2-curl'
+    - 'php7.2-dba'
+    - 'php7.2-dev'
+    - 'php7.2-gd'
+    - 'php7.2-json'
+    - 'php7.2-ldap'
+    - 'php7.2-mbstring'
+    - 'php7.2-mysql'
+    - 'php7.2-opcache'
+    - 'php7.2-readline'
+    - 'php7.2-soap'
+    - 'php7.2-xml'
+    - 'php7.2-zip'
+    - 'libapache2-mod-php7.2'
+    - 'php-redis'
+    - 'php-imagick'
+    - 'php-pear'
+    - 'php-uploadprogress'
+    - 'imagemagick'
+
+- name: install redis
+  apt:
+    name: redis-server
+    state: present
+
+- name: install memcached
+  apt:
+    name: memcached
+    state: present
+
+- import_tasks: php-ini.yml

@@ -1,0 +1,7 @@
+---
+
+- import_tasks: drupal-tools.yml
+- import_tasks: probo.yml
+- import_tasks: ruby.yml
+- import_tasks: wp.yml
+- import_tasks: solr.yml

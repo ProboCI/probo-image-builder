@@ -1,0 +1,71 @@
+---
+
+- name: install apache
+  apt: name={{ item }} state=present
+  with_items:
+    - apache2
+    - apache2-utils
+
+- name: ensure apache service is stopped
+  shell: service apache2 stop
+
+- name: fix default apache vhost
+  copy:
+    src: apache-default-host.conf
+    dest: /etc/apache2/sites-available/000-default.conf
+    owner: root
+    mode: 0644
+
+- name: enable apache modules
+  apache2_module: state=present name={{ item }}
+  with_items:
+    - actions
+    - alias
+    - deflate
+    - dir
+    - expires
+    - headers
+    - mime
+    - negotiation
+    - rewrite
+    - setenvif
+
+- name: disable apache modules
+  apache2_module: state=absent name={{ item }} force=true
+  with_items:
+    - autoindex
+
+- name: disable server signature
+  lineinfile:
+    dest: /etc/apache2/conf-available/security.conf
+    regexp: '^ServerSignature'
+    line: 'ServerSignature Off'
+
+- name: set prod server tokens
+  lineinfile:
+    dest: /etc/apache2/conf-available/security.conf
+    regexp: '^ServerTokens'
+    line: 'ServerTokens Prod'
+
+- name: add ssl_environment_variable config
+  copy:
+    src: ssl_environment_variable.conf
+    dest: /etc/apache2/conf-available/ssl_environment_variable.conf
+    owner: root
+    mode: 0644
+
+- name: enable ssl_environment_variable config
+  command: a2enconf ssl_environment_variable
+  register: a2enconf_ssl_env_var
+
+- name: ensure www directory exists
+  file:
+    path: '/var/www'
+    state: 'directory'
+    recurse: yes
+    mode: 0755
+    owner: 'root'
+    group: 'root'
+
+- name: ensure apache service is started
+  shell: service apache2 start
