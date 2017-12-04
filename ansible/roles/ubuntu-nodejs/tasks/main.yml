@@ -1,21 +1,21 @@
 ---
 
-- name: add nodejs gpg signing key
+- name: Add nodejs gpg signing key.
   apt_key:
     keyserver: 'pgp.mit.edu'
     id: 9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280
 
-- name: add nodejs apt repo
+- name: Add nodejs apt repository.
   apt_repository:
     repo: deb https://deb.nodesource.com/node_4.x trusty main
     state: present
   register: nodejsaptrepo
 
-- name: update apt
+- name: Update apt repositories.
   apt: update_cache=yes
   when: nodejsaptrepo.changed
 
-- name: install nodejs
+- name: Install "nodejs" apt package.
   retries: 3
   delay: 1
   apt:
@@ -23,3 +23,23 @@
     state: present
   register: installnodejs
   until: installnodejs | success
+
+- name: Install "bower" node.js package globally.
+  npm:
+    name: bower
+    global: yes
+
+- name: Install "grunt-cli" node.js package globally.
+  npm:
+    name: grunt-cli
+    global: yes
+
+- name: Install "gulp-cli" node.js package globally.
+  npm:
+    name: gulp-cli
+    global: yes
+
+- name: Install "yarn" node.js package globally.
+  npm:
+    name: yarn
+    global: yes
