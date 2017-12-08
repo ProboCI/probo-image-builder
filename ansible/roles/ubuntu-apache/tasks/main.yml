@@ -16,6 +16,13 @@
     owner: root
     mode: 0644
 
+- name: add apache varnish vhost
+  copy:
+    src: apache-default-varnish-host.conf
+    dest: /etc/apache2/sites-available/000-default-varnish.conf
+    owner: root
+    mode: 0644
+
 - name: enable apache modules
   apache2_module: state=present name={{ item }}
   with_items:
@@ -57,6 +64,13 @@
 - name: enable ssl_environment_variable config
   command: a2enconf ssl_environment_variable
   register: a2enconf_ssl_env_var
+
+- name: add listen on 8080 config
+  copy:
+    src: listen_8080.conf
+    dest: /etc/apache2/conf-available/listen_8080.conf
+    owner: root
+    mode: 0644
 
 - name: ensure www directory exists
   file:
