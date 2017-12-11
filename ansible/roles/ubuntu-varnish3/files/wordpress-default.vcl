@@ -8,8 +8,6 @@
      .between_bytes_timeout = 600s;
  }
 
-# SET THE ALLOWED IP OF PURGE REQUESTS
-# ##########################################################
 acl purge {
   "localhost";
 }
@@ -17,8 +15,6 @@ acl purge {
 # THE RECV FUNCTION
 # ##########################################################
 sub vcl_recv {
-  # For Testing: If you want to test with Varnish passing (not caching) uncomment
-  # return( pass );
 
   # FORWARD THE IP OF THE REQUEST
   if (req.restarts == 0) {
@@ -97,25 +93,6 @@ sub vcl_recv {
   # IF BASIC AUTH IS ON THEN DO NOT CACHE
   # ##########################################################
   if (req.http.Authorization || req.http.Cookie) {
-    return (pass);
-  }
-
-  # LIST URLS NOT TO BE CACHED
-  # USUALLY THIS INCLUDES THE PREVIEW QUERY STRING, A NOCACHE
-  # QUERY STRING, AND FILES THAT WILL BE SERVED BY THE CDN
-  # SUCH AS IMAGES, CSS, AND JS.  IF YOU ARE NOT USING A CDN 
-  # YOU CAN CACHE YOUR STATIC RESOURCES TOO
-  # ##########################################################
-  if ( 
-    req.url ~ "preview" 
-    || req.url ~ "nocache"
-    || req.url ~ "\.css$"
-    || req.url ~ "\.js$"
-    || req.url ~ "\.jpg$"
-    || req.url ~ "\.jpeg$"
-    || req.url ~ "\.gif$"
-    || req.url ~ "\.png$" 
-  ) {
     return (pass);
   }
   

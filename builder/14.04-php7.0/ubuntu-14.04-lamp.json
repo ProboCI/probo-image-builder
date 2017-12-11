@@ -21,6 +21,7 @@
         "../../ansible/roles/ubuntu-mysql",
         "../../ansible/roles/ubuntu-nodejs",
         "../../ansible/roles/ubuntu-php7.0",
+        "../../ansible/roles/ubuntu-varnish3",
         "../../ansible/roles/ubuntu-probo"
       ]
     }
