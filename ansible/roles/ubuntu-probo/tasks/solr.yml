@@ -1,37 +1,37 @@
 ---
 
-- name: add zivtech gpg key
+- name: Add zivtech gpg key.
   apt_key:
-    keyserver: pgp.mit.edu
-    id: FC6025C6CB92E5AA60B4AB8F8E8904A002E048F5
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x8e8904a002e048f5
+    id: "02e048f5"
 
-- name: add zivtech apt repo
+- name: Add zivtech apt repository.
   apt_repository:
     repo: deb http://apt.zivtech.com stable main trusty
     state: present
   register: zivtechaptrepo
 
-- name: add openjdk apt repo
+- name: Add openjdk apt repository.
   apt_repository:
     repo: 'ppa:openjdk-r/ppa'
     state: 'present'
   register: jdkaptrepo
 
-- name: update apt
+- name: Update apt repositories.
   apt:
     update_cache: yes
 
-- name: install java
+- name: Install java apt package.
   apt:
     name: openjdk-8-jre
     state: present
 
-- name: install solr
+- name: Install solr apt package.
   apt:
     name: solr
     state: present
 
-- name: add create-solr-instance script
+- name: Add create-solr-instance script.
   copy:
     src: create-solr-instance
     dest: /usr/local/bin/create-solr-instance
@@ -39,7 +39,7 @@
     group: root
     mode: 0755
 
-- name: add remove-solr-instance script
+- name: Add remove-solr-instance script.
   copy:
     src: remove-solr-instance
     dest: /usr/local/bin/remove-solr-instance
