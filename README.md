@@ -12,7 +12,7 @@ This project is used to create docker images needed to run
 ## Running
 
 1. After installing dependencies...
-1. Run `vagrant up`
+1. Run `vagrant up` (or `vagrant provision` if the vm already exists)
 
 This will use packer to build a fresh ubuntu base box using a predefined vagrant
 box. The VM will run packer inside the VM to build Docker images for Ubuntu
