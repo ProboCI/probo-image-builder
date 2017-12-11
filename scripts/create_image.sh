@@ -23,6 +23,12 @@ echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php7.1-nightly...${NC}"
 docker build --compress -t="proboci/ubuntu-14.04-lamp:php7.1-nightly" .
 echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php7.1-nightly built.${NC}"
 
+cd ../14.04-php7.2
+$PACKER build ubuntu-14.04-lamp.json
+echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php7.2-nightly...${NC}"
+docker build --compress -t="proboci/ubuntu-14.04-lamp:php7.2-nightly" .
+echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php7.2-nightly built.${NC}"
+
 cd ../16.04-php7.0
 $PACKER build ubuntu-16.04-lamp.json
 echo -e "${INFO}Building proboci/ubuntu-16.04-lamp:php7.0-nightly...${NC}"
