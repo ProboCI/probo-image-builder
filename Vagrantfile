@@ -20,6 +20,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", path: "scripts/create_image.sh"
 
+  #config.vm.provision "shell", path: "scripts/build-images.sh"
+
   config.vm.provision "shell", path: "scripts/export_image.sh"
 
   config.ssh.forward_agent = true
