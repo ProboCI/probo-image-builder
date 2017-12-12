@@ -1,24 +1,24 @@
 ---
 
 - name: install varnish
-  apt: name={{ item }} state=present
-  with_items:
-    - varnish
+  package:
+    name: varnish
+    state: present
 
 - name: ensure varnish service is stopped
   shell: service varnish stop
 
 - name: setup drupal default.vcl
   copy:
-    src: drupal-default.vcl
+    src: drupal-default-{{ varnish_version }}.vcl
     dest: /etc/varnish/drupal-default.vcl
     owner: root
     mode: 0644
 
 - name: setup wordpress default.vcl
   copy:
-    src: wordpress-default.vcl
-    dest: /etc/varnish/drupal-default.vcl
+    src: wordpress-default-{{ varnish_version }}.vcl
+    dest: /etc/varnish/wordpress-default.vcl
     owner: root
     mode: 0644
 
@@ -28,6 +28,3 @@
     dest: /etc/varnish/secret
     owner: root
     mode: 0600
-
-- name: ensure varnish service is started
-  shell: service varnish start
