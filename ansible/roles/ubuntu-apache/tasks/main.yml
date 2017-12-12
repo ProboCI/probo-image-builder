@@ -36,6 +36,8 @@
     - negotiation
     - rewrite
     - setenvif
+    - proxy
+    - proxy_http
 
 - name: disable apache modules
   apache2_module: state=absent name={{ item }} force=true
