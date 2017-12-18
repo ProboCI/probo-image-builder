@@ -5,7 +5,7 @@
 
   roles:
     - { role: 'ubuntu-base' }
-    - { role: 'geerlingguy.nginx' }
+    - { role: 'ubuntu-apache' }
     - { role: 'ubuntu-nodejs' }
     - { role: 'ubuntu-php7.2' }
     - { role: 'ubuntu-probo' }

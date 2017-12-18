@@ -17,7 +17,7 @@
       "playbook_file": "../../ansible/ubuntu-dotnetsdk2.0.2.yml",
       "role_paths": [
         "../../ansible/roles/ubuntu-base",
-        "../../ansible/roles/geerlingguy.nginx",
+        "../../ansible/roles/ubuntu-apache",
         "../../ansible/roles/ubuntu-nodejs",
         "../../ansible/roles/ubuntu-php7.2",
         "../../ansible/roles/ubuntu-probo",
