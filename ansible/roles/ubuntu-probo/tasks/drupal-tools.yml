@@ -6,11 +6,16 @@
     dest: /usr/local/bin/drush
     mode: 0755
 
-- name: install drupal console
-  get_url:
-    url: https://drupalconsole.com/installer
-    dest: /usr/local/bin/drupal
-    mode: 0755
+- name: add drupal console install script
+  copy:
+    src: install-drupal-console
+    dest: /root/install-drupal-console
+    mode: 0750
+
+- name: run drupal console install
+  command: /root/install-drupal-console
+  args:
+    creates: /usr/local/bin/drupal
 
 - name: add composer install script
   copy:
