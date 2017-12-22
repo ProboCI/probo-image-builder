@@ -79,13 +79,14 @@ build_ubuntu-16.04-lamp-php7.2 () {
 }
 
 # Build LAMP images.
-#build_ubuntu-14.04-lamp-php5.6
-#build_ubuntu-14.04-lamp-php7.0
+build_ubuntu-14.04-lamp-php5.6
+build_ubuntu-14.04-lamp-php7.0
 build_ubuntu-14.04-lamp-php7.1
-#build_ubuntu-16.04-lamp-php7.0
-#build_ubuntu-16.04-lamp-php7.1
-#build_ubuntu-16.04-lamp-php7.2
+build_ubuntu-14.04-lamp-php7.2
+build_ubuntu-16.04-lamp-php7.0
+build_ubuntu-16.04-lamp-php7.1
+build_ubuntu-16.04-lamp-php7.2
 
 # Build .NET images.
-#build_ubuntu-16.04-dotnet-sdk1.0.1
-#build_ubuntu-16.04-dotnet-sdk2.0.2
+build_ubuntu-16.04-dotnet-sdk1.0.1
+build_ubuntu-16.04-dotnet-sdk2.0.2

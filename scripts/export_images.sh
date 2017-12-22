@@ -53,13 +53,14 @@ export_ubuntu-16.04-lamp-php7.2 () {
 }
 
 # Export LAMP images.
-#export_ubuntu-14.04-lamp-php5.6
-#export_ubuntu-14.04-lamp-php7.0
+export_ubuntu-14.04-lamp-php5.6
+export_ubuntu-14.04-lamp-php7.0
 export_ubuntu-14.04-lamp-php7.1
-#export_ubuntu-16.04-lamp-php7.0
-#export_ubuntu-16.04-lamp-php7.1
-#export_ubuntu-16.04-lamp-php7.2
+export_ubuntu-14.04-lamp-php7.2
+export_ubuntu-16.04-lamp-php7.0
+export_ubuntu-16.04-lamp-php7.1
+export_ubuntu-16.04-lamp-php7.2
 
 # Export .NET images.
-#export_ubuntu-16.04-dotnet-sdk1.0.1
-#export_ubuntu-16.04-dotnet-sdk2.0.2
+export_ubuntu-16.04-dotnet-sdk1.0.1
+export_ubuntu-16.04-dotnet-sdk2.0.2
