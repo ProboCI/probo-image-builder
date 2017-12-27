@@ -1,0 +1,19 @@
+---
+- name: install dotnet signing key
+  apt_key:
+    url: "https://packages.microsoft.com/keys/microsoft.asc"
+    state: present
+
+- name: add dotnet core apt repo
+  apt_repository:
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main
+    state: present
+    filename: 'dotnet'
+    update_cache: yes
+  register: dotnet
+
+- name: install dotnet core
+  apt:
+    name: dotnet-sdk-2.0.2
+    state: present
+    force: yes

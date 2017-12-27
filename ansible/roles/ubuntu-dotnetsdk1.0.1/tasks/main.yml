@@ -1,0 +1,19 @@
+---
+- name: install dotnet signing key
+  apt_key:
+    url: "https://packages.microsoft.com/keys/microsoft.asc"
+    state: present
+
+- name: add dotnet core apt repo
+  apt_repository:
+    repo: deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main
+    state: present
+    filename: 'dotnet'
+    update_cache: yes
+  register: dotnet
+
+- name: install dotnet core
+  apt:
+    name: dotnet-dev-1.0.1
+    state: present
+    force: yes

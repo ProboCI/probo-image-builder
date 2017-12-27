@@ -10,24 +10,14 @@
         name: 'zip'
         state: 'present'
 
-    - name: download packer
-      get_url:
-        url: 'https://releases.hashicorp.com/packer/1.0.3/packer_1.0.3_linux_amd64.zip'
-        dest: '/tmp/packer.zip'
-        sha256sum: 0e10169ef9cf3fd55dcc9dc213b9995170f7712e8a162ca2f5109d62bfbe7529
-        owner: 'root'
-        group: 'root'
-        mode: 0755
-
-    - name: extract packer
+    - name: download and extract packer
       unarchive:
-        src:  '/tmp/packer.zip'
+        src:  https://releases.hashicorp.com/packer/1.0.3/packer_1.0.3_linux_amd64.zip
         dest: '/usr/local/bin'
         remote_src: yes
         owner: 'root'
         group: 'root'
         mode: 0755
-        creates: /usr/local/bin/packer
 
     - name: add docker key
       apt_key:

@@ -14,16 +14,14 @@
     },
     {
       "type": "ansible-local",
-      "playbook_file": "../../ansible/ubuntu-php7.0.yml",
-      "extra_arguments": ["-e", "varnish_version=4"],
+      "playbook_file": "../../ansible/ubuntu-dotnetsdk1.0.1.yml",
       "role_paths": [
-        "../../ansible/roles/ubuntu-apache",
         "../../ansible/roles/ubuntu-base",
-        "../../ansible/roles/ubuntu-mysql",
+        "../../ansible/roles/ubuntu-apache",
         "../../ansible/roles/ubuntu-nodejs",
-        "../../ansible/roles/ubuntu-php7.0",
-        "../../ansible/roles/ubuntu-varnish",
-        "../../ansible/roles/ubuntu-probo"
+        "../../ansible/roles/ubuntu-php7.2",
+        "../../ansible/roles/ubuntu-probo",
+        "../../ansible/roles/ubuntu-dotnetsdk1.0.1"
       ]
     }
   ],
@@ -31,8 +29,8 @@
     [
       {
         "type": "docker-tag",
-        "tag": "php7.0-intermediary",
-        "repository": "proboci/ubuntu-16.04-lamp"
+        "tag": "sdk2.0.2-intermediary",
+        "repository": "proboci/ubuntu-16.04-dotnet"
       }
     ]
   ]

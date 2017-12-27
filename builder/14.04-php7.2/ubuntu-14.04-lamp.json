@@ -15,14 +15,12 @@
     {
       "type": "ansible-local",
       "playbook_file": "../../ansible/ubuntu-php7.1.yml",
-      "extra_arguments": ["-e", "varnish_version=3"],
       "role_paths": [
         "../../ansible/roles/ubuntu-apache",
         "../../ansible/roles/ubuntu-base",
         "../../ansible/roles/ubuntu-mysql",
         "../../ansible/roles/ubuntu-nodejs",
-        "../../ansible/roles/ubuntu-php7.1",
-        "../../ansible/roles/ubuntu-varnish",
+        "../../ansible/roles/ubuntu-php7.2",
         "../../ansible/roles/ubuntu-probo"
       ]
     }
@@ -31,7 +29,7 @@
     [
       {
         "type": "docker-tag",
-        "tag": "php7.1-intermediary",
+        "tag": "php7.2-intermediary",
         "repository": "proboci/ubuntu-14.04-lamp"
       }
     ]
