@@ -1,19 +1,22 @@
 ---
 
-- name: Add nodejs gpg signing key.
+- name: Add Nodesource apt key.
   apt_key:
-    keyserver: 'pgp.mit.edu'
-    id: 9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
+    id: "68576280"
 
-- name: Add nodejs apt repository.
+- name: Add NodeSource repositories for Node.js.
   apt_repository:
-    repo: deb https://deb.nodesource.com/node_4.x trusty main
+    repo: "{{ item }}"
     state: present
-  register: nodejsaptrepo
+  with_items:
+    - "deb https://deb.nodesource.com/node_4.x trusty main"
+    - "deb-src https://deb.nodesource.com/node_4.x trusty main"
+  register: node_repo
 
 - name: Update apt repositories.
   apt: update_cache=yes
-  when: nodejsaptrepo.changed
+  when: node_repo.changed
 
 - name: Install "nodejs" apt package.
   retries: 3

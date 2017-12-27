@@ -16,6 +16,11 @@
     owner: root
     mode: 0644
 
+- name: add apache dotnet vhost
+  copy:
+    src: apache-default-dotnet-host.conf
+    dest: /etc/apache2/sites-available/000-default-dotnet.conf
+
 - name: add apache varnish vhost
   copy:
     src: apache-default-varnish-host.conf

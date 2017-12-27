@@ -18,9 +18,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.playbook = "ansible/vagrant.yml"
   end
 
-  config.vm.provision "shell", path: "scripts/create_image.sh"
+  config.vm.provision "shell", path: "scripts/build_images.sh"
 
-  config.vm.provision "shell", path: "scripts/export_image.sh"
+  config.vm.provision "shell", path: "scripts/export_images.sh"
 
   config.ssh.forward_agent = true
 end

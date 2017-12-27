@@ -1,0 +1,37 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "ubuntu:16.04",
+      "pull": true,
+      "commit": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "../ansible.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../../ansible/ubuntu-dotnetsdk1.0.1.yml",
+      "role_paths": [
+        "../../ansible/roles/ubuntu-base",
+        "../../ansible/roles/ubuntu-apache",
+        "../../ansible/roles/ubuntu-nodejs",
+        "../../ansible/roles/ubuntu-php7.2",
+        "../../ansible/roles/ubuntu-probo",
+        "../../ansible/roles/ubuntu-dotnetsdk1.0.1"
+      ]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "tag": "sdk2.0.2-intermediary",
+        "repository": "proboci/ubuntu-16.04-dotnet"
+      }
+    ]
+  ]
+}
