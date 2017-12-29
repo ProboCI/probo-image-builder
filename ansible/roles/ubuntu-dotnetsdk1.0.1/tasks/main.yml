@@ -17,3 +17,8 @@
     name: dotnet-dev-1.0.1
     state: present
     force: yes
+
+- name: add dotnet 1.0.1 test script
+  copy:
+    src: dotnet-1.0.1-test
+    dest: /usr/local/bin/dotnet-1.0.1-test

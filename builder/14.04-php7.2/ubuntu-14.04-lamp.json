@@ -14,7 +14,7 @@
     },
     {
       "type": "ansible-local",
-      "playbook_file": "../../ansible/ubuntu-php7.1.yml",
+      "playbook_file": "../../ansible/ubuntu-php7.2.yml",
       "role_paths": [
         "../../ansible/roles/ubuntu-apache",
         "../../ansible/roles/ubuntu-base",

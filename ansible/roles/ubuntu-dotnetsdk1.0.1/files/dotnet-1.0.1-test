@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+mkdir -p /source
+mkdir -p /var/webapps
+mkdir -p /var/www/html
+cd /source
+git clone https://github.com/allebb/lk2.git
+cd /source/lk2
+dotnet restore
+dotnet publish -c Release -o /var/webapps/lk2
+rm /etc/apache2/sites-enabled/000-default.conf
+cd /etc/apache2/conf-enabled
+ln -s ../conf-available/listen_8080.conf .
+cd /etc/apache2/sites-enabled
+ln -s ../sites-available/000-default-dotnet.conf .
+service apache2 restart
+chown -R www-data:www-data /var/webapps/lk2
+cd /source/lk2
+sudo -u www-data dotnet /var/webapps/lk2/lk2-demo.dll
+
