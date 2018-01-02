@@ -18,7 +18,7 @@
     state: present
     force: yes
 
-- name: add dotnet 1.0.1 test script
+- name: add dotnetapp init service script
   copy:
-    src: dotnet-1.0.1-test
-    dest: /usr/local/bin/dotnet-1.0.1-test
+    src: dotnetapp
+    dest: /etc/init.d/dotnetapp
