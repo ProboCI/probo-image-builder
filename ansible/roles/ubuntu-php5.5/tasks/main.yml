@@ -2,7 +2,6 @@
 
 - name: update apt
   apt: update_cache=yes
-  when: phpaptrepo.changed
 
 - name: install php dependencies
   apt: name={{ item }} state=present
