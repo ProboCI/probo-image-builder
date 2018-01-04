@@ -9,5 +9,5 @@
     - { role: 'ubuntu-apache' }
     - { role: 'ubuntu-varnish' }
     - { role: 'ubuntu-nodejs' }
-    - { role: 'ubuntu-php5.6' }
+    - { role: 'ubuntu-php5.5' }
     - { role: 'ubuntu-probo' }
