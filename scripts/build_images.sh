@@ -6,6 +6,14 @@ NC='\033[0m' # No Color
 PACKER=/usr/local/bin/packer
 BUILDER=/vagrant/builder
 
+build_ubuntu-14.04-lamp-php5.5 () {
+	cd $BUILDER/14.04-php5.5
+	$PACKER build ubuntu-14.04-lamp.json
+	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp and proboci/ubuntu-14.04-lamp:beta images...${NC}"
+	docker build --compress -t="proboci/ubuntu-14.04-lamp" -t="proboci/ubuntu-14.04-lamp:beta" .
+	echo -e "${INFO}Images for proboci/ubuntu-14.04-lamp and proboci/ubuntu-14.04-lamp:betabuilt.${NC}"
+}
+
 build_ubuntu-14.04-lamp-php5.6 () {
 	cd $BUILDER/14.04-php5.6
 	$PACKER build ubuntu-14.04-lamp.json
@@ -79,6 +87,7 @@ build_ubuntu-16.04-lamp-php7.2 () {
 }
 
 # Build LAMP images.
+build_ubuntu-14.04-lamp-php5.5
 build_ubuntu-14.04-lamp-php5.6
 build_ubuntu-14.04-lamp-php7.0
 build_ubuntu-14.04-lamp-php7.1
@@ -88,5 +97,5 @@ build_ubuntu-16.04-lamp-php7.1
 build_ubuntu-16.04-lamp-php7.2
 
 # Build .NET images.
-build_ubuntu-16.04-dotnet-sdk1.0.1
-build_ubuntu-16.04-dotnet-sdk2.0.2
+#build_ubuntu-16.04-dotnet-sdk1.0.1
+#build_ubuntu-16.04-dotnet-sdk2.0.2
