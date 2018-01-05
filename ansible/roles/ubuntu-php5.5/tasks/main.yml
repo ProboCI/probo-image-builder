@@ -14,16 +14,13 @@
     - 'php5-gd'
     - 'php5-json'
     - 'php5-ldap'
-    - 'php5-mbstring'
     - 'php5-mcrypt'
     - 'php5-mysql'
     - 'php5-readline'
-    - 'php5-xml'
     - 'libapache2-mod-php5'
-    - 'php-redis'
+    - 'php5-redis'
     - 'php5-imagick'
     - 'php-pear'
-    - 'php-uploadprogress'
     - 'imagemagick'
 
 - name: install redis

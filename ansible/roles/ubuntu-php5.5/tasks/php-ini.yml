@@ -2,7 +2,7 @@
 
 - name: 'set php ini values'
   lineinfile:
-    path: /etc/php/5/apache2/php.ini
+    path: /etc/php5/apache2/php.ini
     regexp: '^{{ item.name }}'
     line: 'upload_max_filesize = {{ item.value }}'
   with_items:
