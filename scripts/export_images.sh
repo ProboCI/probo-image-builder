@@ -97,27 +97,48 @@ export_ubuntu-16.04-lamp-php7.2-beta () {
 	gzip $WORKSPACE/ubuntu-16.04-php7.2-beta.tar
 }
 
-# Export LAMP images.
-# Ubuntu LAMP 14.04 PHP Images
-export_ubuntu-14.04-lamp-php5.5
-export_ubuntu-14.04-lamp-php5.5-beta
-export_ubuntu-14.04-lamp-php5.6
-export_ubuntu-14.04-lamp-php5.6-beta
-export_ubuntu-14.04-lamp-php7.0
-export_ubuntu-14.04-lamp-php7.0-beta
-export_ubuntu-14.04-lamp-php7.1
-export_ubuntu-14.04-lamp-php7.1-beta
-export_ubuntu-14.04-lamp-php7.2
-export_ubuntu-14.04-lamp-php7.2-beta
+export_ubuntu-14.04-beta-images (){
+	# Export Ubuntu LAMP 14.04 PHP Beta Images
+	export_ubuntu-14.04-lamp-php5.5-beta
+	export_ubuntu-14.04-lamp-php5.6-beta
+	export_ubuntu-14.04-lamp-php7.0-beta
+	export_ubuntu-14.04-lamp-php7.1-beta
+	export_ubuntu-14.04-lamp-php7.2-beta
+}
 
-# Ubuntu LAMP 16.04 PHP Images
-export_ubuntu-16.04-lamp-php7.0
-export_ubuntu-16.04-lamp-php7.0-beta
-export_ubuntu-16.04-lamp-php7.1
-export_ubuntu-16.04-lamp-php7.1-beta
-export_ubuntu-16.04-lamp-php7.2
-export_ubuntu-16.04-lamp-php7.2-beta
+export_ubuntu-14.04-stable-images () {
+	# Export Ubuntu LAMP 14.04 PHP Stable Images
+	export_ubuntu-14.04-lamp-php5.5
+	export_ubuntu-14.04-lamp-php5.6
+	export_ubuntu-14.04-lamp-php7.0
+	export_ubuntu-14.04-lamp-php7.1
+	export_ubuntu-14.04-lamp-php7.2
 
-# Export .NET images.
-#export_ubuntu-16.04-dotnet-sdk1.0.1
-#export_ubuntu-16.04-dotnet-sdk2.0.2
+}
+
+export_ubuntu-16.04-beta-images () {
+	# Export Ubuntu LAMP 16.04 PHP Beta Images
+	export_ubuntu-16.04-lamp-php7.0-beta
+	export_ubuntu-16.04-lamp-php7.1-beta
+	export_ubuntu-16.04-lamp-php7.2-beta
+}
+
+export_ubuntu-16.04-stable-images () {
+	# Ubuntu LAMP 16.04 PHP Images
+	export_ubuntu-16.04-lamp-php7.0
+	export_ubuntu-16.04-lamp-php7.1
+	export_ubuntu-16.04-lamp-php7.2
+}
+
+
+export_dotnet-core-images () {
+	# Export .NET Core images.
+	export_ubuntu-16.04-dotnet-sdk1.0.1
+	export_ubuntu-16.04-dotnet-sdk2.0.2
+}
+
+export_ubuntu-14.04-beta-images
+export_ubuntu-14.04-stable-images
+export_ubuntu-16.04-beta-images
+export_ubuntu-16.04-stable-images
+#export_dotnet-core-images
