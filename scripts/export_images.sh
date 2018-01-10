@@ -8,8 +8,8 @@ WORKSPACE=/vagrant/workspace
 rm -f $WORKSPACE/*
 
 export_ubuntu-14.04-lamp-php5.5 () {
-	docker save proboci/ubuntu-14.04-lamp > $WORKSPACE/ubuntu-14.04-lamp.tar
-	gzip $WORKSPACE/ubuntu-14.04-lamp.tar
+	docker save proboci/ubuntu-14.04-lamp:latest > $WORKSPACE/ubuntu-14.04-lamp-latest.tar
+	gzip $WORKSPACE/ubuntu-14.04-lamp-latest.tar
 }
 
 export_ubuntu-14.04-lamp-php5.5-beta () {
