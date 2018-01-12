@@ -22,7 +22,7 @@ build_ubuntu-14.04-lamp-php5.5-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:beta built.${NC}"
 }
 
-build_ubuntu-14.04-lamp-php5.6 () {
+build_ubuntu-14.04-lamp-php-5.6 () {
 	cd $BUILDER/14.04-php5.6
 	$PACKER build ubuntu-14.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-5.6 image...${NC}"
@@ -38,7 +38,7 @@ build_ubuntu-14.04-lamp-php5.6-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:5.6-beta built.${NC}"
 }
 
-build_ubuntu-14.04-lamp-php7.0 () {
+build_ubuntu-14.04-lamp-php-7.0 () {
 	cd $BUILDER/14.04-php7.0
 	$PACKER build ubuntu-14.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-7.0 image...${NC}"
@@ -54,7 +54,7 @@ build_ubuntu-14.04-lamp-php7.0-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:7.0-beta built.${NC}"
 }
 
-build_ubuntu-14.04-lamp-php7.1 () {
+build_ubuntu-14.04-lamp-php-7.1 () {
 	cd $BUILDER/14.04-php7.1
 	$PACKER build ubuntu-14.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-7.1 image...${NC}"
@@ -70,7 +70,7 @@ build_ubuntu-14.04-lamp-php7.1-beta () {
 	echo -e "${INFO}Image roboci/ubuntu-14.04-lamp:7.1-beta built.${NC}"
 }
 
-build_ubuntu-14.04-lamp-php7.2 () {
+build_ubuntu-14.04-lamp-php-7.2 () {
 	cd $BUILDER/14.04-php7.2
 	$PACKER build ubuntu-14.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-7.2 image...${NC}"
@@ -86,7 +86,7 @@ build_ubuntu-14.04-lamp-php7.2-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-7.2-beta built.${NC}"
 }
 
-build_ubuntu-16.04-lamp-php7.0 () {
+build_ubuntu-16.04-lamp-php-7.0 () {
 	cd $BUILDER/16.04-php7.0
 	$PACKER build ubuntu-16.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-16.04-lamp:php-7.0 image...${NC}"
@@ -102,7 +102,7 @@ build_ubuntu-16.04-lamp-php7.0-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-16.04-lamp:7.0-beta built.${NC}"
 }
 
-build_ubuntu-16.04-lamp-php7.1 () {
+build_ubuntu-16.04-lamp-php-7.1 () {
 	cd $BUILDER/16.04-php7.1
 	$PACKER build ubuntu-16.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-16.04-lamp:php-7.1 image...${NC}"
@@ -118,7 +118,7 @@ build_ubuntu-16.04-lamp-php7.1-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-16.04-lamp:7.1-beta built.${NC}"
 }
 
-build_ubuntu-16.04-lamp-php7.2 () {
+build_ubuntu-16.04-lamp-php-7.2 () {
 	cd $BUILDER/16.04-php7.2
 	$PACKER build ubuntu-16.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-16.04-lamp:php-7.2 image...${NC}"
@@ -161,11 +161,11 @@ build_ubuntu-14.04-beta-images () {
 
 build_ubuntu-14.04-stable-images () {
 	# Build Ubuntu LAMP 14.04 PHP Stable Images
-	build_ubuntu-14.04-lamp-php5.5
-	build_ubuntu-14.04-lamp-php5.6
-	build_ubuntu-14.04-lamp-php7.0
-	build_ubuntu-14.04-lamp-php7.1
-	build_ubuntu-14.04-lamp-php7.2
+	build_ubuntu-14.04-lamp-php-5.5
+	build_ubuntu-14.04-lamp-php-5.6
+	build_ubuntu-14.04-lamp-php-7.0
+	build_ubuntu-14.04-lamp-php-7.1
+	build_ubuntu-14.04-lamp-php-7.2
 }
 
 build_ubuntu-16.04-beta-images () {
@@ -177,9 +177,9 @@ build_ubuntu-16.04-beta-images () {
 
 build_ubuntu-16.04-stable-images () {
 	# Build Ubuntu LAMP 16.04 PHP Stable Images
-	build_ubuntu-16.04-lamp-php7.0
-	build_ubuntu-16.04-lamp-php7.1
-	build_ubuntu-16.04-lamp-php7.2
+	build_ubuntu-16.04-lamp-php-7.0
+	build_ubuntu-16.04-lamp-php-7.1
+	build_ubuntu-16.04-lamp-php-7.2
 }
 
 build_dotnet-core-images () {
