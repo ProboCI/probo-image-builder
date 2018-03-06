@@ -86,6 +86,14 @@ build_ubuntu-14.04-lamp-php7.2-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-7.2-beta built.${NC}"
 }
 
+build_ubuntu-14.04-lamp-latest () {
+	cd $BUILDER/14.04-latest
+	$PACKER build ubuntu-14.04-lamp.json
+	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:latest image...${NC}"
+	docker build --compress -t="proboci/ubuntu-14.04-lamp:latest" .
+	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:latest built.${NC}"
+}
+
 build_ubuntu-16.04-lamp-php-7.0 () {
 	cd $BUILDER/16.04-php7.0
 	$PACKER build ubuntu-16.04-lamp.json
@@ -134,6 +142,14 @@ build_ubuntu-16.04-lamp-php7.2-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-16.04-lamp:7.2-beta built.${NC}"
 }
 
+build_ubuntu-16.04-lamp-latest () {
+	cd $BUILDER/16.04-latest
+	$PACKER build ubuntu-16.04-lamp.json
+	echo -e "${INFO}Building proboci/ubuntu-16.04-lamp:latest image...${NC}"
+	docker build --compress -t="proboci/ubuntu-16.04-lamp:latest" .
+	echo -e "${INFO}Image proboci/ubuntu-16.04-lamp:latest built.${NC}"
+}
+
 build_ubuntu-16.04-dotnet-sdk1.0.1 () {
 	cd $BUILDER/16.04-dotnetsdk1.0.1
 	$PACKER build ubuntu-16.04-dotnet.json
@@ -148,6 +164,11 @@ build_ubuntu-16.04-dotnet-sdk2.0.2 () {
 	echo -e "${INFO}Building proboci/ubuntu-16.04-dotnet:sdk2.0.2...${NC}"
 	docker build --compress -t="proboci/ubuntu-16.04-dotnet:sdk2.0.2" .
 	echo -e "${INFO}Image proboci/ubuntu-16.04-dotnet:sdk2.0.2 built.${NC}"
+}
+
+build_ubuntu-lamp-latest-images () {
+	build_ubuntu-16.04-lamp-latest
+	build_ubuntu-14.04-lamp-latest
 }
 
 build_ubuntu-14.04-beta-images () {
@@ -188,8 +209,12 @@ build_dotnet-core-images () {
 	build_ubuntu-16.04-dotnet-sdk2.0.2
 }
 
+# Uncomment the builds you want to run, otherwise this provision takes way too long.
+# To do: split these up into smaller chunks that can be provisioned faster.
+
+build_ubuntu-lamp-latest-images
 #build_ubuntu-14.04-beta-images
-build_ubuntu-14.04-stable-images
+#build_ubuntu-14.04-stable-images
 #build_ubuntu-16.04-beta-images
-build_ubuntu-16.04-stable-images
+#build_ubuntu-16.04-stable-images
 #build_dotnet-core-images

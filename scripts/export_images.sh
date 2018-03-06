@@ -7,6 +7,11 @@ WORKSPACE=/vagrant/workspace
 
 rm -f $WORKSPACE/*
 
+export_ubuntu-14.04-lamp-latest () {
+	docker save proboci/ubuntu-14.04-lamp:latest > $WORKSPACE/ubuntu-14.04-lamp-latest.tar
+	gzip $WORKSPACE/ubuntu-14.04-lamp-latest.tar
+}
+
 export_ubuntu-14.04-lamp-php-5.5 () {
 	docker save proboci/ubuntu-14.04-lamp:latest > $WORKSPACE/ubuntu-14.04-lamp-latest.tar
 	gzip $WORKSPACE/ubuntu-14.04-lamp-latest.tar
@@ -97,7 +102,17 @@ export_ubuntu-16.04-lamp-php7.2-beta () {
 	gzip $WORKSPACE/ubuntu-16.04-php7.2-beta.tar
 }
 
-export_ubuntu-14.04-beta-images (){
+export_ubuntu-16.04-lamp-latest () {
+	docker save proboci/ubuntu-16.04-lamp:latest > $WORKSPACE/ubuntu-16.04-lamp-latest.tar
+	gzip $WORKSPACE/ubuntu-16.04-lamp-latest.tar
+}
+
+export_ubuntu-lamp-latest-images () {
+	export_ubuntu-14.04-lamp-latest
+	export_ubuntu-16.04-lamp-latest
+}
+
+export_ubuntu-14.04-beta-images () {
 	# Export Ubuntu LAMP 14.04 PHP Beta Images
 	export_ubuntu-14.04-lamp-php5.5-beta
 	export_ubuntu-14.04-lamp-php5.6-beta
@@ -137,8 +152,12 @@ export_dotnet-core-images () {
 	export_ubuntu-16.04-dotnet-sdk2.0.2
 }
 
+# Uncomment the exports you want to run, otherwise this provision takes way too long.
+# To do: split these up into smaller chunks that can be provisioned faster.
+
+export_ubuntu-lamp-latest-images
 #export_ubuntu-14.04-beta-images
-export_ubuntu-14.04-stable-images
+#export_ubuntu-14.04-stable-images
 #export_ubuntu-16.04-beta-images
-export_ubuntu-16.04-stable-images
+#export_ubuntu-16.04-stable-images
 #export_dotnet-core-images
