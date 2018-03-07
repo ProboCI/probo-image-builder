@@ -14,14 +14,14 @@
     },
     {
       "type": "ansible-local",
-      "playbook_file": "../../ansible/ubuntu-php7.2.yml",
+      "playbook_file": "../../ansible/ubuntu-php-7.2.yml",
       "extra_arguments": ["-e", "varnish_version=4"],
       "role_paths": [
         "../../ansible/roles/ubuntu-apache",
         "../../ansible/roles/ubuntu-base",
         "../../ansible/roles/ubuntu-mysql",
         "../../ansible/roles/ubuntu-nodejs",
-        "../../ansible/roles/ubuntu-php7.2",
+        "../../ansible/roles/ubuntu-php-7.2",
         "../../ansible/roles/ubuntu-varnish",
         "../../ansible/roles/ubuntu-probo"
       ]

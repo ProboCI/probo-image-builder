@@ -7,7 +7,7 @@
     - { role: 'ubuntu-base' }
     - { role: 'ubuntu-apache' }
     - { role: 'ubuntu-mysql' }
-    - { role: 'ubuntu-php7.0' }
+    - { role: 'ubuntu-php-7.0' }
     - { role: 'ubuntu-varnish' }
     - { role: 'ubuntu-nodejs' }
     - { role: 'ubuntu-probo' }

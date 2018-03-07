@@ -5,9 +5,9 @@
 
   roles:
     - { role: 'ubuntu-base' }
-    - { role: 'ubuntu-mysql' }
     - { role: 'ubuntu-apache' }
+    - { role: 'ubuntu-mysql' }
+    - { role: 'ubuntu-php-5.5' }
     - { role: 'ubuntu-varnish' }
     - { role: 'ubuntu-nodejs' }
-    - { role: 'ubuntu-php5.6' }
     - { role: 'ubuntu-probo' }
