@@ -57,7 +57,7 @@ export_ubuntu-16.04-dotnet-sdk2.0.2 () {
 
 export_ubuntu-16.04-lamp-php-7.0-beta () {
 	docker save proboci/ubuntu-16.04-lamp:php-7.0-beta > $WORKSPACE/ubuntu-16.04-php-7.0-beta.tar
-	gzip $WORKSPACE/ubuntu-16.04-php7.0-beta.tar
+	gzip $WORKSPACE/ubuntu-16.04-php-7.0-beta.tar
 }
 
 export_ubuntu-16.04-lamp-php-7.1-beta () {
