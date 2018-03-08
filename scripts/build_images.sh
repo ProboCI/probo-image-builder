@@ -14,28 +14,12 @@ NC='\033[0m' # No Color
 PACKER=/usr/local/bin/packer
 BUILDER=/vagrant/builder
 
-build_ubuntu-14.04-lamp-php-5.5 () {
-	cd $BUILDER/14.04-php-5.5
-	$PACKER build ubuntu-14.04-lamp.json
-	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-5.5 image...${NC}"
-	docker build --compress -t="proboci/ubuntu-14.04-lamp:php-5.5" .
-	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-5.5 built.${NC}"
-}
-
 build_ubuntu-14.04-lamp-php-5.5-beta () {
 	cd $BUILDER/14.04-php-5.5
 	$PACKER build ubuntu-14.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-5.5-beta image...${NC}"
 	docker build --compress -t="proboci/ubuntu-14.04-lamp:php-5.5-beta" .
 	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-5.5-beta built.${NC}"
-}
-
-build_ubuntu-14.04-lamp-php-5.6 () {
-	cd $BUILDER/14.04-php-5.6
-	$PACKER build ubuntu-14.04-lamp.json
-	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-5.6 image...${NC}"
-	docker build --compress -t="proboci/ubuntu-14.04-lamp:php-5.6" .
-	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-5.6 built.${NC}"
 }
 
 build_ubuntu-14.04-lamp-php-5.6-beta () {
@@ -46,14 +30,6 @@ build_ubuntu-14.04-lamp-php-5.6-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-5.6-beta built.${NC}"
 }
 
-build_ubuntu-14.04-lamp-php-7.0 () {
-	cd $BUILDER/14.04-php7.0
-	$PACKER build ubuntu-14.04-lamp.json
-	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-7.0 image...${NC}"
-	docker build --compress -t="proboci/ubuntu-14.04-lamp:php-7.0" .
-	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-7.0 built.${NC}"
-}
-
 build_ubuntu-14.04-lamp-php-7.0-beta () {
 	cd $BUILDER/14.04-php-7.0
 	$PACKER build ubuntu-14.04-lamp.json
@@ -62,28 +38,12 @@ build_ubuntu-14.04-lamp-php-7.0-beta () {
 	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-7.0-beta built.${NC}"
 }
 
-build_ubuntu-14.04-lamp-php-7.1 () {
-	cd $BUILDER/14.04-php-7.1
-	$PACKER build ubuntu-14.04-lamp.json
-	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-7.1 image...${NC}"
-	docker build --compress -t="proboci/ubuntu-14.04-lamp:php-7.1" .
-	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-7.1 built.${NC}"
-}
-
 build_ubuntu-14.04-lamp-php-7.1-beta () {
 	cd $BUILDER/14.04-php-7.1
 	$PACKER build ubuntu-14.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-7.1-beta image...${NC}"
 	docker build --compress -t="proboci/ubuntu-14.04-lamp:php-7.1-beta" .
 	echo -e "${INFO}Image roboci/ubuntu-14.04-lamp:php-7.1-beta built.${NC}"
-}
-
-build_ubuntu-14.04-lamp-php-7.2 () {
-	cd $BUILDER/14.04-php-7.2
-	$PACKER build ubuntu-14.04-lamp.json
-	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-7.2 image...${NC}"
-	docker build --compress -t="proboci/ubuntu-14.04-lamp:php-7.2" .
-	echo -e "${INFO}Image proboci/ubuntu-14.04-lamp:php-7.2 built.${NC}"
 }
 
 build_ubuntu-14.04-lamp-php7.2-beta () {
