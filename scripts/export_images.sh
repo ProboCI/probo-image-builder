@@ -27,7 +27,7 @@ export_ubuntu-14.04-lamp-php-5.5-beta () {
 
 export_ubuntu-14.04-lamp-php-5.6-beta () {
 	docker save proboci/ubuntu-14.04-lamp:php-5.6-beta > $WORKSPACE/ubuntu-14.04-lamp-php-5.6-beta.tar
-	gzip $WORKSPACE/ubuntu-14.04-php-5.6.tar
+	gzip $WORKSPACE/ubuntu-14.04-php-5.6-beta.tar
 }
 
 export_ubuntu-14.04-lamp-php-7.0-beta () {
