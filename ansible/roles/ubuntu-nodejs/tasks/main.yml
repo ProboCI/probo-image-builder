@@ -46,3 +46,8 @@
   npm:
     name: yarn
     global: yes
+
+- name: Install "lighthouse" node.js package globally.
+  npm:
+    name: lighthouse
+    global: yes
