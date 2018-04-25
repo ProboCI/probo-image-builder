@@ -1,0 +1,53 @@
+---
+
+- name: Add Nodesource apt key.
+  apt_key:
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
+    id: "68576280"
+
+- name: Add NodeSource repositories for Node.js.
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - "deb https://deb.nodesource.com/node_8.x trusty main"
+    - "deb-src https://deb.nodesource.com/node_8.x trusty main"
+  register: node_repo
+
+- name: Update apt repositories.
+  apt: update_cache=yes
+  when: node_repo.changed
+
+- name: Install "nodejs" apt package.
+  retries: 3
+  delay: 1
+  apt:
+    name: nodejs
+    state: present
+  register: installnodejs
+  until: installnodejs | success
+
+- name: Install "bower" node.js package globally.
+  npm:
+    name: bower
+    global: yes
+
+- name: Install "grunt-cli" node.js package globally.
+  npm:
+    name: grunt-cli
+    global: yes
+
+- name: Install "gulp-cli" node.js package globally.
+  npm:
+    name: gulp-cli
+    global: yes
+
+- name: Install "yarn" node.js package globally.
+  npm:
+    name: yarn
+    global: yes
+
+- name: Install "lighthouse" node.js package globally.
+  npm:
+    name: lighthouse
+    global: yes
