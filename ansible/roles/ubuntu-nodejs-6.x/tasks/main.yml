@@ -10,8 +10,8 @@
     repo: "{{ item }}"
     state: present
   with_items:
-    - "deb https://deb.nodesource.com/node_4.x trusty main"
-    - "deb-src https://deb.nodesource.com/node_4.x trusty main"
+    - "deb https://deb.nodesource.com/node_6.x trusty main"
+    - "deb-src https://deb.nodesource.com/node_6.x trusty main"
   register: node_repo
 
 - name: Update apt repositories.

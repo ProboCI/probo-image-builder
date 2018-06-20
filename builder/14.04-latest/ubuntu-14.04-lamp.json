@@ -1,0 +1,39 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "ubuntu:14.04",
+      "pull": true,
+      "commit": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "../ansible.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../../ansible/ubuntu-php-5.6.yml",
+      "extra_arguments": ["-e", "varnish_version=3"],
+      "role_paths": [
+        "../../ansible/roles/ubuntu-apache",
+        "../../ansible/roles/ubuntu-base",
+        "../../ansible/roles/ubuntu-mysql",
+        "../../ansible/roles/ubuntu-nodejs-6.x",
+        "../../ansible/roles/ubuntu-php-5.6",
+        "../../ansible/roles/ubuntu-varnish",
+        "../../ansible/roles/ubuntu-probo"
+      ]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "tag": "latest",
+        "repository": "proboci/ubuntu-14.04-lamp"
+      }
+    ]
+  ]
+}
