@@ -14,9 +14,12 @@
   apt: name={{ item }} state=present
   with_items:
     - 'php5.6'
+    - 'php5.6-bcmath'
+    - 'php5.6-bz2'
     - 'php5.6-cli'
     - 'php5.6-common'
     - 'php5.6-curl'
+    - 'php5.6-dba'
     - 'php5.6-dev'
     - 'php5.6-gd'
     - 'php5.6-json'
@@ -24,8 +27,11 @@
     - 'php5.6-mbstring'
     - 'php5.6-mcrypt'
     - 'php5.6-mysql'
+    - 'php5.6-opcache'
     - 'php5.6-readline'
+    - 'php5.6-soap'
     - 'php5.6-xml'
+    - 'php5.6-zip'
     - 'libapache2-mod-php5.6'
     - 'php-redis'
     - 'php5-imagick'
@@ -41,16 +47,6 @@
 - name: install memcached
   apt:
     name: memcached
-    state: present
-
-- name: install libzip
-  apt:
-    name: libzip-dev
-    state: present
-
-- name: install php zip
-  pear:
-    name: pecl/zip
     state: present
 
 - import_tasks: php-ini.yml
