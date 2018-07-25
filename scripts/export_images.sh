@@ -17,62 +17,50 @@ rm -f $WORKSPACE/*
 
 export_ubuntu-14.04-lamp-latest () {
 	docker save proboci/ubuntu-14.04-lamp:latest > $WORKSPACE/ubuntu-14.04-lamp-latest.tar
-	gzip $WORKSPACE/ubuntu-14.04-lamp-latest.tar
 }
 
 export_ubuntu-14.04-lamp-php-5.5-beta () {
 	docker save proboci/ubuntu-14.04-lamp:php-5.5-beta > $WORKSPACE/ubuntu-14.04-lamp-php-5.5-beta.tar
-	gzip $WORKSPACE/ubuntu-14.04-lamp-beta.tar
 }
 
 export_ubuntu-14.04-lamp-php-5.6-beta () {
 	docker save proboci/ubuntu-14.04-lamp:php-5.6-beta > $WORKSPACE/ubuntu-14.04-lamp-php-5.6-beta.tar
-	gzip $WORKSPACE/ubuntu-14.04-php-5.6-beta.tar
 }
 
 export_ubuntu-14.04-lamp-php-7.0-beta () {
 	docker save proboci/ubuntu-14.04-lamp:php-7.0-beta > $WORKSPACE/ubuntu-14.04-php-7.0-beta.tar
-	gzip $WORKSPACE/ubuntu-14.04-php-7.0-beta.tar
 }
 
 export_ubuntu-14.04-lamp-php-7.1-beta () {
 	docker save proboci/ubuntu-14.04-lamp:php-7.1-beta > $WORKSPACE/ubuntu-14.04-php-7.1-beta.tar
-	gzip $WORKSPACE/ubuntu-14.04-php-7.1-beta.tar
 }
 
 export_ubuntu-14.04-lamp-php-7.2-beta () {
 	docker save proboci/ubuntu-14.04-lamp:php-7.2-beta > $WORKSPACE/ubuntu-14.04-php-7.2-beta.tar
-	gzip $WORKSPACE/ubuntu-14.04-php-7.2-beta.tar
 }
 
 export_ubuntu-16.04-dotnet-sdk1.0.1 () {
 	docker save proboci/ubuntu-16.04-dotnet:sdk1.0.1 > $WORKSPACE/ubuntu-16.04-dotnetsdk1.0.1.tar
-	gzip $WORKSPACE/ubuntu-16.04-dotnetsdk1.0.1.tar
 }
 
 export_ubuntu-16.04-dotnet-sdk2.0.2 () {
 	docker save proboci/ubuntu-16.04-dotnet:sdk2.0.2 > $WORKSPACE/ubuntu-16.04-dotnetsdk2.0.2.tar
-	gzip $WORKSPACE/ubuntu-16.04-dotnetsdk2.0.2.tar
 }
 
 export_ubuntu-16.04-lamp-php-7.0-beta () {
 	docker save proboci/ubuntu-16.04-lamp:php-7.0-beta > $WORKSPACE/ubuntu-16.04-php-7.0-beta.tar
-	gzip $WORKSPACE/ubuntu-16.04-php-7.0-beta.tar
 }
 
 export_ubuntu-16.04-lamp-php-7.1-beta () {
 	docker save proboci/ubuntu-16.04-lamp:php-7.1-beta > $WORKSPACE/ubuntu-16.04-php-7.1-beta.tar
-	gzip $WORKSPACE/ubuntu-16.04-php-7.1-beta.tar
 }
 
 export_ubuntu-16.04-lamp-php-7.2-beta () {
 	docker save proboci/ubuntu-16.04-lamp:php-7.2-beta > $WORKSPACE/ubuntu-16.04-php-7.2-beta.tar
-	gzip $WORKSPACE/ubuntu-16.04-php-7.2-beta.tar
 }
 
 export_ubuntu-16.04-lamp-latest () {
 	docker save proboci/ubuntu-16.04-lamp:latest > $WORKSPACE/ubuntu-16.04-lamp-latest.tar
-	gzip $WORKSPACE/ubuntu-16.04-lamp-latest.tar
 }
 
 export_ubuntu-lamp-latest-images () {
@@ -131,7 +119,16 @@ export_ubuntu-lamp-php-7.2-beta-images () {
 
 # Export the :beta tags for both the 14.04 and 16.04 docker images.
 #export_ubuntu-14.04-beta-images
+#export_ubuntu-14.04-lamp-php-5.5-beta
+export_ubuntu-14.04-lamp-php-5.6-beta
+#export_ubuntu-14.04-lamp-php-7.0-beta
+#export_ubuntu-14.04-lamp-php-7.1-beta
+#export_ubuntu-14.04-lamp-php-7.2-beta
+
 #export_ubuntu-16.04-beta-images
+#export_ubuntu-16.04-lamp-php-7.0-beta
+#export_ubuntu-16.04-lamp-php-7.1-beta
+#export_ubuntu-16.04-lamp-php-7.2-beta
 
 # Export the PHP 5 beta images.
 #export_ubuntu-lamp-php-5-beta-images
