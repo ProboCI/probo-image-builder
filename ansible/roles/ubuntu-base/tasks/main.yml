@@ -45,4 +45,12 @@
     state: present
     force: yes
 
+- name: ensure root user's .ssh directory exists
+  file:
+    path: '/root/.ssh'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: 0700
+
 - import_tasks: ntp.yml
