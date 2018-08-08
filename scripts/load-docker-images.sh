@@ -6,7 +6,7 @@ set -e
 
 directory=workspace
 
-file_extension="tar.gz"
+file_extension="tar"
 for image in $(find "$directory" -name \*.$file_extension); do
   echo "Loading $image ..."
   docker load -i $image
