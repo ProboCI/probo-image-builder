@@ -16,7 +16,7 @@
   file: src=/usr/bin/gem2.0 dest=/usr/local/bin/gem state=link
 
 - name: Add ruby and gem to path
-  command: export PATH="/root/.gem/ruby/2.0.0/bin:$PATH"
+  command: echo 'export PATH="/root/.gem/ruby/2.0.0/bin:$PATH"' >> /root/.bashrc && source /root/.bashrc
 
 - name: install gem bundler
   gem:
