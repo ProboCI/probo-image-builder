@@ -39,6 +39,12 @@
     - 'wget'
     - 'zip'
 
+- name: Install latest version of Ruby
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - ruby2.0
+    - ruby2.0-dev
+
 - name: install google-chrome-stable
   apt:
     name: google-chrome-stable
