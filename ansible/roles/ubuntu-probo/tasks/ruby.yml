@@ -9,6 +9,10 @@
     name: rvm
     state: present
 
+# Initialize rvm binary.
+- name: initialize rvm
+  command: source /usr/share/rvm/scripts/rvm
+
 # Install latest stable ruby version.
 - name: install ruby
   command: rvm install 2.5.1
