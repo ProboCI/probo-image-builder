@@ -53,4 +53,15 @@
     group: 'root'
     mode: 0700
 
+# TODO: There's got to be a better way...
+- name: ensure .ssh/config file exists
+  file:
+    path: '/root/.ssh/config'
+    owner: 'root'
+    group: 'root'
+    mode: 0700
+    content: |
+      Host *
+      StrictHostKeyChecking no
+
 - import_tasks: ntp.yml

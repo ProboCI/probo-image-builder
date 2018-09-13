@@ -1,28 +1,24 @@
 ---
 
-# Add rvm apt repo.
-- apt_repository:
-    repo: ppa:rael-gc/rvm
+- name: add ruby install script
+  copy:
+    src: install-ruby
+    dest: /root/install-ruby
+    mode: 0750
+  tags: ruby
 
-- name: install rvm
-  apt:
-    name: rvm
-    state: present
-
-# Initialize rvm binary.
-- name: initialize rvm
-  command: source /usr/share/rvm/scripts/rvm
-
-# Install latest stable ruby version.
-- name: install ruby
-  command: rvm install 2.5.1
+- name: run ruby install script
+  command: /root/install-ruby
+  tags: ruby
 
 - name: install compass
   apt:
     name: ruby-compass
     state: present
+  tags: ruby
 
 - name: install gem bundler
   gem:
     name: bundler
     state: latest
+  tags: ruby
