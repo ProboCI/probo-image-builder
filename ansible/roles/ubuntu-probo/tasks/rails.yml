@@ -1,0 +1,17 @@
+---
+
+- name: install rails app dependencies
+  apt:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - sqlite3
+    - libsqlite3-dev
+
+- name: install rails
+  gem:
+    name: rails
+
+- name: install sqlite3 gem
+  gem:
+    name: sqlite3
