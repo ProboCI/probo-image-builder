@@ -55,8 +55,8 @@
 
 # TODO: There's got to be a better way...
 - name: ensure .ssh/config file exists
-  file:
-    path: '/root/.ssh/config'
+  copy:
+    dest: '/root/.ssh/config'
     owner: 'root'
     group: 'root'
     mode: 0700
