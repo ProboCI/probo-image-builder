@@ -51,3 +51,8 @@
   npm:
     name: lighthouse
     global: yes
+
+- name: Install "the-a11y-machine" node.js package globally.
+  npm:
+    name: the-a11y-machine
+    global: yes
