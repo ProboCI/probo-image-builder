@@ -3,7 +3,7 @@
 - name: 'set memory_limit value'
   lineinfile:
     path: /etc/php/5.6/apache2/php.ini
-    regexp: '^{{ item.name }}'
+    regexp: '^memory_limit'
     line: 'memory_limit = {{ memory_limit }}'
 
 - name: 'set error_reporting value'
