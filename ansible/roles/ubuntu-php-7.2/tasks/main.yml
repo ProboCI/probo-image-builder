@@ -35,7 +35,6 @@
     - 'php-redis'
     - 'php-imagick'
     - 'php-pear'
-    - 'php-pecl'
     - 'php-uploadprogress'
     - 'imagemagick'
     - 'libmcrypt-dev'
