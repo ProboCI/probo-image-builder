@@ -46,7 +46,7 @@ build_ubuntu-14.04-lamp-php-7.1-beta () {
 	echo -e "${INFO}Image roboci/ubuntu-14.04-lamp:php-7.1-beta built.${NC}"
 }
 
-build_ubuntu-14.04-lamp-php7.2-beta () {
+build_ubuntu-14.04-lamp-php-7.2-beta () {
 	cd $BUILDER/14.04-php-7.2
 	$PACKER build ubuntu-14.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-7.2-beta image...${NC}"
