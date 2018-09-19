@@ -41,3 +41,8 @@
     path: /etc/php/7.2/apache2/php.ini
     regexp: '^upload_max_filesize'
     line: 'upload_max_filesize = {{ upload_max_filesize }}'
+
+- name: 'add mcrypt PHP extension'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    line: "extension=mcrypt.so"
