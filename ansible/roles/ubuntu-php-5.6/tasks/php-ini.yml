@@ -36,8 +36,7 @@
     regexp: '^post_max_size'
     line: 'post_max_size = {{ post_max_size }}'
 
-- name: 'set upload_max_filesize value'
+- name: 'set error_log path'
   lineinfile:
     path: /etc/php/5.6/apache2/php.ini
-    regexp: '^upload_max_filesize'
-    line: 'upload_max_filesize = {{ upload_max_filesize }}'
+    line: 'error_log = /var/log/php/error.log'
