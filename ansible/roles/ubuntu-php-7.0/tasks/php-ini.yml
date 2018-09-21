@@ -41,3 +41,8 @@
     path: /etc/php/7.0/apache2/php.ini
     regexp: '^upload_max_filesize'
     line: 'upload_max_filesize = {{ upload_max_filesize }}'
+
+- name: 'set error_log path'
+  lineinfile:
+    path: /etc/php/7.0/apache2/php.ini
+    line: 'error_log = /var/log/php/error.log'

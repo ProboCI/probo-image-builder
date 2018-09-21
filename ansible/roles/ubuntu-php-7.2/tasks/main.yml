@@ -42,7 +42,7 @@
 
 - name: install mcrypt
   pear:
-    name: mcrypt-1.0.1
+    name: mcrypt
     state: present
 
 - name: install redis
@@ -54,5 +54,13 @@
   apt:
     name: memcached
     state: present
+
+- name: create PHP error log file
+  file:
+    path: /var/log/php/error.log
+    owner: www-data
+    group: root
+    mode: 0644
+    state: touch
 
 - import_tasks: php-ini.yml

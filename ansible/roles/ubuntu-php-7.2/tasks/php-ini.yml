@@ -46,3 +46,8 @@
   lineinfile:
     path: /etc/php/7.2/apache2/php.ini
     line: "extension=mcrypt.so"
+
+- name: 'set error_log path'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    line: 'error_log = /var/log/php/error.log'
