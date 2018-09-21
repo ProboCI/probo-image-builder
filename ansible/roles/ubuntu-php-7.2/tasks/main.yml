@@ -37,6 +37,13 @@
     - 'php-pear'
     - 'php-uploadprogress'
     - 'imagemagick'
+    - 'libmcrypt-dev'
+    - 'libreadline-dev'
+
+- name: install mcrypt
+  pear:
+    name: mcrypt
+    state: present
 
 - name: install redis
   apt:
@@ -47,5 +54,13 @@
   apt:
     name: memcached
     state: present
+
+- name: create PHP error log file
+  file:
+    path: /var/log/php/error.log
+    owner: www-data
+    group: root
+    mode: 0644
+    state: touch
 
 - import_tasks: php-ini.yml

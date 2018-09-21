@@ -18,10 +18,9 @@ SITE_CONF=$(find . -name '6.x' -type d | grep solr | head -n 1)
 echo $SITE_CONF
 
 if [[ -n "${SITE_CONF/[ ]*\n/}" ]] ; then
-  read -p "We appear to have found a solr configuration at \`$SITE_CONF\`, would you like to use it (Y/N)?" -n 1 -r
-  if [[ $REPLY =~ ^[Yy]$ ]] ; then
+  echo "We are automatically using configuration in \`$SITE_CONF\` to build your $NAME solr instance based on your search_solr_api module version."
+  echo "Use the [config directory] parameter in your create-solr-instance command to specify an alternative solr config to use. Example: create-solr-instance drupal /src/solr-config"
     CONF="$SITE_CONF"
-  fi
 fi
 
 sudo -u solr -- /opt/solr/bin/solr create -c "$NAME" -d "$CONF"

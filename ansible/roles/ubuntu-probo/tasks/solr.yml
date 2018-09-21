@@ -46,3 +46,12 @@
     owner: root
     group: root
     mode: 0755
+
+- name: Start solr service.
+  command: service solr start
+
+- name: Create default solr instance.
+  command: create-solr-instance solr /opt/solr/server/solr/configsets/search_api_solr_8.x-1.0
+
+- name: Stop solr service.
+  command: service solr stop

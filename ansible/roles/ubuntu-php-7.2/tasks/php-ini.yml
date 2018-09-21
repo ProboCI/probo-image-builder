@@ -1,15 +1,53 @@
 ---
-
-- name: 'set php ini values'
+# Set php.ini defaults.
+- name: 'set memory_limit value'
   lineinfile:
     path: /etc/php/7.2/apache2/php.ini
-    regexp: '^{{ item.name }}'
-    line: 'upload_max_filesize = {{ item.value }}'
-  with_items:
-    - { name: 'memory_limit', value: '{{ memory_limit }}' }
-    - { name: 'error_reporting', value: '{{ error_reporting }}' }
-    - { name: 'expose_php', value: '{{ expose_php }}' }
-    - { name: 'display_errors', value: '{{ display_errors }}' }
-    - { name: 'display_startup_errors', value: '{{ display_startup_errors }}' }
-    - { name: 'post_max_size', value: '{{ post_max_size }}' }
-    - { name: 'upload_max_filesize', value: '{{ upload_max_filesize }}' }
+    regexp: '^memory_limit'
+    line: 'memory_limit = {{ memory_limit }}'
+
+- name: 'set error_reporting value'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    regexp: '^error_reporting'
+    line: 'error_reporting = {{ error_reporting }}'
+
+- name: 'set expose_php value'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    regexp: '^expose_php'
+    line: 'expose_php = {{ expose_php }}'
+
+- name: 'set display_errors value'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    regexp: '^display_errors'
+    line: 'display_errors = {{ display_errors }}'
+
+- name: 'set display_startup_errors value'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    regexp: '^display_startup_errors'
+    line: 'display_startup_errors = {{ display_startup_errors }}'
+
+- name: 'set post_max_size value'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    regexp: '^post_max_size'
+    line: 'post_max_size = {{ post_max_size }}'
+
+- name: 'set upload_max_filesize value'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    regexp: '^upload_max_filesize'
+    line: 'upload_max_filesize = {{ upload_max_filesize }}'
+
+- name: 'add mcrypt PHP extension'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    line: "extension=mcrypt.so"
+
+- name: 'set error_log path'
+  lineinfile:
+    path: /etc/php/7.2/apache2/php.ini
+    line: 'error_log = /var/log/php/error.log'

@@ -1,14 +1,24 @@
 ---
 
-- name: install ruby and compass
+- name: add ruby install script
+  copy:
+    src: install-ruby
+    dest: /root/install-ruby
+    mode: 0750
+  tags: ruby
+
+- name: run ruby install script
+  command: /root/install-ruby
+  tags: ruby
+
+- name: install compass
   apt:
-    name: '{{ item }}'
+    name: ruby-compass
     state: present
-  with_items:
-    - ruby-dev
-    - ruby-compass
+  tags: ruby
 
 - name: install gem bundler
   gem:
     name: bundler
     state: latest
+  tags: ruby

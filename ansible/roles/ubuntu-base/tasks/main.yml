@@ -45,4 +45,23 @@
     state: present
     force: yes
 
+- name: ensure root user's .ssh directory exists
+  file:
+    path: '/root/.ssh'
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: 0700
+
+# TODO: There's got to be a better way...
+- name: ensure .ssh/config file exists
+  copy:
+    dest: '/root/.ssh/config'
+    owner: 'root'
+    group: 'root'
+    mode: 0700
+    content: |
+      Host *
+      StrictHostKeyChecking no
+
 - import_tasks: ntp.yml

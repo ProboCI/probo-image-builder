@@ -46,7 +46,7 @@ build_ubuntu-14.04-lamp-php-7.1-beta () {
 	echo -e "${INFO}Image roboci/ubuntu-14.04-lamp:php-7.1-beta built.${NC}"
 }
 
-build_ubuntu-14.04-lamp-php7.2-beta () {
+build_ubuntu-14.04-lamp-php-7.2-beta () {
 	cd $BUILDER/14.04-php-7.2
 	$PACKER build ubuntu-14.04-lamp.json
 	echo -e "${INFO}Building proboci/ubuntu-14.04-lamp:php-7.2-beta image...${NC}"
@@ -166,7 +166,16 @@ build_ubuntu-lamp-php-7.2-beta-images () {
 
 # Build the :beta tags for both the 14.04 and 16.04 docker images.
 #build_ubuntu-14.04-beta-images
+#build_ubuntu-14.04-lamp-php-5.5-beta
+build_ubuntu-14.04-lamp-php-5.6-beta
+#build_ubuntu-14.04-lamp-php-7.0-beta
+#build_ubuntu-14.04-lamp-php-7.1-beta
+#build_ubuntu-14.04-lamp-php-7.2-beta
+
 #build_ubuntu-16.04-beta-images
+#build_ubuntu-16.04-lamp-php-7.0-beta
+#build_ubuntu-16.04-lamp-php-7.1-beta
+#build_ubuntu-16.04-lamp-php-7.2-beta
 
 # Build the PHP 5 beta images.
 #build_ubuntu-lamp-php-5-beta-images
