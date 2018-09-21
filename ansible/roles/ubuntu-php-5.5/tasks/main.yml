@@ -44,6 +44,14 @@
     name: pecl/zip
     state: present
 
+- name: craete php log dir
+  file:
+    path: /var/log/php
+    state: directory
+    mode: 0755
+    owner: www-data
+    group: root
+
 - name: create PHP error log file
   file:
     path: /var/log/php/error.log
