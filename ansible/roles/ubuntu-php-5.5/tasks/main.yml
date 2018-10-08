@@ -19,7 +19,7 @@
     - 'php5-mysql'
     - 'php5-readline'
     - 'php5-redis'
-    - 'php5-soap'
+    - 'php-soap'
     - 'imagemagick'
     - 'libapache2-mod-php5'
     - 'php-pear'

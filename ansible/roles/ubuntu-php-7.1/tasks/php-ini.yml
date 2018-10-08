@@ -42,7 +42,12 @@
     regexp: '^upload_max_filesize'
     line: 'upload_max_filesize = {{ upload_max_filesize }}'
 
-- name: 'set error_log path'
+- name: 'set error_log path apache'
   lineinfile:
     path: /etc/php/7.1/apache2/php.ini
+    line: 'error_log = /var/log/php/error.log'
+
+- name: 'set error_log path cli'
+  lineinfile:
+    path: /etc/php/7.1/cli/php.ini
     line: 'error_log = /var/log/php/error.log'

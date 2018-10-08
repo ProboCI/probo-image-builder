@@ -42,12 +42,12 @@
     regexp: '^upload_max_filesize'
     line: 'upload_max_filesize = {{ upload_max_filesize }}'
 
-- name: 'add mcrypt PHP extension'
+- name: 'set error_log path apache'
   lineinfile:
     path: /etc/php/7.2/apache2/php.ini
-    line: "extension=mcrypt.so"
+    line: 'error_log = /var/log/php/error.log'
 
-- name: 'set error_log path'
+- name: 'set error_log path cli'
   lineinfile:
-    path: /etc/php/7.2/apache2/php.ini
+    path: /etc/php/7.2/cli/php.ini
     line: 'error_log = /var/log/php/error.log'

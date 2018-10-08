@@ -40,11 +40,6 @@
     - 'libmcrypt-dev'
     - 'libreadline-dev'
 
-- name: install mcrypt
-  pear:
-    name: mcrypt
-    state: present
-
 - name: install redis
   apt:
     name: redis-server
