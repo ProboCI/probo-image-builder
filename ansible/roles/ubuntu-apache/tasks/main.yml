@@ -7,7 +7,9 @@
     - apache2-utils
 
 - name: ensure apache service is stopped
-  shell: service apache2 stop
+  service:
+    name: apache2
+    state: stopped
 
 - name: fix default apache vhost
   copy:
@@ -89,4 +91,6 @@
     group: 'root'
 
 - name: ensure apache service is started
-  shell: service apache2 start
+  service:
+    name: apache2
+    state: started

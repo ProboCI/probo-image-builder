@@ -49,7 +49,7 @@
     name: memcached
     state: present
 
-- name: craete php log dir
+- name: create php log dir
   file:
     path: /var/log/php
     state: directory
