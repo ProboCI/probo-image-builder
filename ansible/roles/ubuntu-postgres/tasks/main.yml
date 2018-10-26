@@ -14,7 +14,7 @@
     name: root
     password: strongpassword
     role_attr_flags: CREATEDB,CREATEROLE,SUPERUSER,LOGIN
-  
+
 - name: create postgres database
   become_user: postgres
   postgresql_db:
