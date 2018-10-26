@@ -1,20 +1,28 @@
 ---
 
-- name: install postgres packages
-  apt: name={{ item }} state=present
-  with_items:
-    - 'postgresql'
-    - 'postgresql-contrib'
+- name: install postgres and dependencies
+  apt:
+    name: [u'postgresql', u'postgresql-contrib', u'python-psycopg2']
+    state: present
 
 - name: start postgres service
-  shell: service potsgres start
+  shell: service postgresql start
 
-- name: create base postgres db
+- name: create postgres user
+  become_user: postgres
+  postgresql_user:
+    name: root
+    password: strongpassword
+    role_attr_flags: CREATEDB,CREATEROLE,SUPERUSER,LOGIN
+  
+- name: create postgres database
+  become_user: postgres
   postgresql_db:
-  name: acme
+    name: drupal
+    owner: root
 
 - name: add postgres.cnf file for root
   template: src=postgres.cnf.j2 dest=/root/.postgres.cnf owner=root mode=0600
 
 - name: ensure postgres is stopped
-  shell: service postgres stop
+  shell: service postgresql stop
