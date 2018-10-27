@@ -162,20 +162,20 @@ build_ubuntu-lamp-php-7.2-beta-images () {
 }
 
 # Build the :latest tags for both the 14.04 and 16.04 docker images.
-#build_ubuntu-lamp-latest-images
+build_ubuntu-lamp-latest-images
 
 # Build the :beta tags for both the 14.04 and 16.04 docker images.
 #build_ubuntu-14.04-beta-images
 #build_ubuntu-14.04-lamp-php-5.5-beta
-build_ubuntu-14.04-lamp-php-5.6-beta
-#build_ubuntu-14.04-lamp-php-7.0-beta
-#build_ubuntu-14.04-lamp-php-7.1-beta
-#build_ubuntu-14.04-lamp-php-7.2-beta
+#build_ubuntu-14.04-lamp-php-5.6-beta
+build_ubuntu-14.04-lamp-php-7.0-beta
+build_ubuntu-14.04-lamp-php-7.1-beta
+build_ubuntu-14.04-lamp-php-7.2-beta
 
 #build_ubuntu-16.04-beta-images
-#build_ubuntu-16.04-lamp-php-7.0-beta
-#build_ubuntu-16.04-lamp-php-7.1-beta
-#build_ubuntu-16.04-lamp-php-7.2-beta
+build_ubuntu-16.04-lamp-php-7.0-beta
+build_ubuntu-16.04-lamp-php-7.1-beta
+build_ubuntu-16.04-lamp-php-7.2-beta
 
 # Build the PHP 5 beta images.
 #build_ubuntu-lamp-php-5-beta-images
