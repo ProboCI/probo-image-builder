@@ -23,6 +23,7 @@
         "../../ansible/roles/ubuntu-nodejs-6.x",
         "../../ansible/roles/ubuntu-php-5.6",
         "../../ansible/roles/ubuntu-varnish",
+        "../../ansible/roles/ubuntu-postgres",
         "../../ansible/roles/ubuntu-probo"
       ]
     }
@@ -32,7 +33,7 @@
       {
         "type": "docker-tag",
         "tag": "latest",
-        "repository": "proboci/ubuntu-14.04-lamp"
+        "repository": "mbagnall/ubuntu-14.04"
       }
     ]
   ]
