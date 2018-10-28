@@ -24,6 +24,7 @@
         "../../ansible/roles/ubuntu-php-7.0",
         "../../ansible/roles/ubuntu-postgres",
         "../../ansible/roles/ubuntu-varnish",
+        "../../ansible/roles/ubuntu-postgres",
         "../../ansible/roles/ubuntu-probo"
       ]
     }
@@ -33,7 +34,7 @@
       {
         "type": "docker-tag",
         "tag": "php-7.0-intermediary",
-        "repository": "mbagnall/ubuntu-16.04"
+        "repository": "proboci/ubuntu-16.04-lamp"
       }
     ]
   ]

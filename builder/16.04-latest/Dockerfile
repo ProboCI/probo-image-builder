@@ -1,2 +1,2 @@
-FROM mbagnall/ubuntu-16.04:latest-intermediary
+FROM proboci/ubuntu-16.04-lamp:latest-intermediary
 ENV PATH "~/.composer/vendor/bin:$PATH"

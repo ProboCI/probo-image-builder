@@ -32,8 +32,8 @@
     [
       {
         "type": "docker-tag",
-        "tag": "latest-intermediary",
-        "repository": "mbagnall/ubuntu-16.04"
+        "tag": "latest",
+        "repository": "proboci/ubuntu-16.04-lamp"
       }
     ]
   ]
