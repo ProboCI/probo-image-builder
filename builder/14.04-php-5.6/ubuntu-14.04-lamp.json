@@ -33,7 +33,7 @@
       {
         "type": "docker-tag",
         "tag": "php-5.6-intermediary",
-        "repository": "proboci/ubuntu-14.04-lamp"
+        "repository": "mbagnall/ubuntu-14.04"
       }
     ]
   ]
