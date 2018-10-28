@@ -33,7 +33,7 @@
       {
         "type": "docker-tag",
         "tag": "php-7.1-intermediary",
-        "repository": "mbagnall/ubuntu-14.04"
+        "repository": "mbagnall/ubuntu-16.04"
       }
     ]
   ]
