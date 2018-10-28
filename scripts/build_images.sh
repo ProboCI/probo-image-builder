@@ -52,7 +52,6 @@ build_ubuntu-14.04-lamp-php-7.2-beta () {
 	echo -e "${INFO}Building mbagnall/ubuntu-14.04:php7.2 image...${NC}"
 	docker build --compress -t="mbagnall/ubuntu-14.04:php7.2" .
 	echo -e "${INFO}Image mbagnall/ubuntu-14.04:php7.2 built.${NC}"
-		docker push mbagnall/ubuntu-14.04:latest
 }
 
 build_ubuntu-14.04-lamp-latest () {
@@ -61,7 +60,6 @@ build_ubuntu-14.04-lamp-latest () {
 	echo -e "${INFO}Building mbagnall/ubuntu-14.04:latest image...${NC}"
 	docker build --compress -t="mbagnall/ubuntu-14.04:latest" .
 	echo -e "${INFO}Image mbagnall/ubuntu-14.04:latest built.${NC}"
-	docker push mbagnall/ubuntu-14.04:latest
 }
 
 build_ubuntu-16.04-lamp-php-7.0-beta () {
