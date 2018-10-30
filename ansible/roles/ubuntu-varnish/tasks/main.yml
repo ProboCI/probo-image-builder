@@ -6,7 +6,9 @@
     state: present
 
 - name: ensure varnish service is stopped
-  shell: service varnish stop
+  service:
+    name: varnish
+    state: stopped
 
 - name: setup drupal default.vcl
   copy:
