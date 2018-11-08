@@ -33,6 +33,7 @@
     - 'php7.0-xml'
     - 'php7.0-zip'
     - 'php7.0-pgsql'
+    - 'php-memcached'
     - 'libapache2-mod-php7.0'
     - 'php-redis'
     - 'php-imagick'
