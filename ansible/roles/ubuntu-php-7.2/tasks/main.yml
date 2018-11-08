@@ -31,6 +31,7 @@
     - 'php7.2-soap'
     - 'php7.2-xml'
     - 'php7.2-zip'
+    - 'php7.2-pgsql'
     - 'php-memcached'
     - 'libapache2-mod-php7.2'
     - 'php-redis'

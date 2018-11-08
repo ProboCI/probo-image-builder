@@ -21,6 +21,7 @@
     - 'php5-redis'
     - 'php5-memcached'
     - 'php-soap'
+    - 'php5-pgsql'
     - 'imagemagick'
     - 'libapache2-mod-php5'
     - 'php-pear'

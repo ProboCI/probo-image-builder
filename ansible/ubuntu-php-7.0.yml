@@ -9,5 +9,6 @@
     - { role: 'ubuntu-mysql' }
     - { role: 'ubuntu-php-7.0' }
     - { role: 'ubuntu-varnish' }
+    - { role: 'ubuntu-postgres' }
     - { role: 'ubuntu-nodejs-6.x' }
     - { role: 'ubuntu-probo' }

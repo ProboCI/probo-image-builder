@@ -23,6 +23,7 @@
         "../../ansible/roles/ubuntu-nodejs-6.x",
         "../../ansible/roles/ubuntu-php-7.2",
         "../../ansible/roles/ubuntu-varnish",
+        "../../ansible/roles/ubuntu-postgres",
         "../../ansible/roles/ubuntu-probo"
       ]
     }
