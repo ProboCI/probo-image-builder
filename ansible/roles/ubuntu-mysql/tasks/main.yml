@@ -5,6 +5,22 @@
   with_items:
     - 'mysql-server'
 
+- name: ensure mysql data directory exists
+  file:
+    path: '/var/lib/mysql'
+    state: 'directory'
+    owner: 'mysql'
+    group: 'mysql'
+    mode: 0755
+
+- name: ensure drush run directory exists
+  file:
+    path: '/var/run/mysqld'
+    state: 'directory'
+    owner: 'mysql'
+    group: 'mysql'
+    mode: 0755
+
 - name: start mysql service
   shell: service mysql start
 
