@@ -2,7 +2,7 @@
 
 - name: install drush
   get_url:
-    url: https://github.com/drush-ops/drush/releases/download/8.1.11/drush.phar
+    url: https://github.com/drush-ops/drush/releases/download/8.1.18/drush.phar
     dest: /usr/local/bin/drush
     mode: 0755
 
